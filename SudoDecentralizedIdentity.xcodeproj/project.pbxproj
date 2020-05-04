@@ -1,0 +1,693 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2EAE9E3D245BB71D003C90C5 /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE9E3C245BB71D003C90C5 /* ClientHelper.swift */; };
+		2EEDCCF8245A0EC0001D3E34 /* SudoDecentralizedIdentity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */; };
+		2EEDCCFD245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCCFC245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift */; };
+		2EEDCCFF245A0EC0001D3E34 /* SudoDecentralizedIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEDCCF1245A0EBF001D3E34 /* SudoDecentralizedIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2EEDCD11245A0F8B001D3E34 /* SudoDecentralizedIdentity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */; };
+		2EEDCD31245A1029001D3E34 /* Indy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEDCD30245A1029001D3E34 /* Indy.framework */; };
+		2EEDCD32245A1029001D3E34 /* Indy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEDCD30245A1029001D3E34 /* Indy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EEDCD64245A10EC001D3E34 /* WalletCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD56245A10EB001D3E34 /* WalletCache.swift */; };
+		2EEDCD65245A10EC001D3E34 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD57245A10EB001D3E34 /* CryptoService.swift */; };
+		2EEDCD66245A10EC001D3E34 /* Did.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD58245A10EB001D3E34 /* Did.swift */; };
+		2EEDCD67245A10EC001D3E34 /* DidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD59245A10EB001D3E34 /* DidService.swift */; };
+		2EEDCD68245A10EC001D3E34 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD5A245A10EB001D3E34 /* Logger.swift */; };
+		2EEDCD69245A10EC001D3E34 /* Pairwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD5B245A10EB001D3E34 /* Pairwise.swift */; };
+		2EEDCD6A245A10EC001D3E34 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD5C245A10EB001D3E34 /* WalletService.swift */; };
+		2EEDCD6B245A10EC001D3E34 /* ExchangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD5D245A10EB001D3E34 /* ExchangeService.swift */; };
+		2EEDCD6C245A10EC001D3E34 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD5E245A10EC001D3E34 /* Crypto.swift */; };
+		2EEDCD6D245A10EC001D3E34 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD5F245A10EC001D3E34 /* Wallet.swift */; };
+		2EEDCD6E245A10EC001D3E34 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD60245A10EC001D3E34 /* Exchange.swift */; };
+		2EEDCD6F245A10EC001D3E34 /* PairwiseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD61245A10EC001D3E34 /* PairwiseService.swift */; };
+		2EEDCD70245A10EC001D3E34 /* SudoDecentralizedIdentityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD62245A10EC001D3E34 /* SudoDecentralizedIdentityClient.swift */; };
+		2EEDCD71245A10EC001D3E34 /* LedgerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD63245A10EC001D3E34 /* LedgerService.swift */; };
+		2EEDCD77245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD73245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift */; };
+		A059D46E245CBC960096F034 /* Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059D46B245C981D0096F034 /* Await.swift */; };
+		A059D46F245CC0E40096F034 /* Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059D46B245C981D0096F034 /* Await.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2EEDCCF9245A0EC0001D3E34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EEDCCE5245A0EBF001D3E34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EEDCCED245A0EBF001D3E34;
+			remoteInfo = SudoDecentralizedIdentity;
+		};
+		2EEDCD12245A0F8B001D3E34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EEDCCE5245A0EBF001D3E34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EEDCCED245A0EBF001D3E34;
+			remoteInfo = SudoDecentralizedIdentity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2EEDCD33245A1029001D3E34 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2EEDCD32245A1029001D3E34 /* Indy.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2EAE9E3C245BB71D003C90C5 /* ClientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientHelper.swift; sourceTree = "<group>"; };
+		2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SudoDecentralizedIdentity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEDCCF1245A0EBF001D3E34 /* SudoDecentralizedIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudoDecentralizedIdentity.h; sourceTree = "<group>"; };
+		2EEDCCF2245A0EBF001D3E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EEDCCF7245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoDecentralizedIdentityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEDCCFC245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoDecentralizedIdentityTests.swift; sourceTree = "<group>"; };
+		2EEDCCFE245A0EC0001D3E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EEDCD0C245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoDecentralizedIdentityIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEDCD10245A0F8B001D3E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EEDCD30245A1029001D3E34 /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Indy.framework; sourceTree = "<group>"; };
+		2EEDCD56245A10EB001D3E34 /* WalletCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletCache.swift; sourceTree = "<group>"; };
+		2EEDCD57245A10EB001D3E34 /* CryptoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		2EEDCD58245A10EB001D3E34 /* Did.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Did.swift; sourceTree = "<group>"; };
+		2EEDCD59245A10EB001D3E34 /* DidService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidService.swift; sourceTree = "<group>"; };
+		2EEDCD5A245A10EB001D3E34 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		2EEDCD5B245A10EB001D3E34 /* Pairwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pairwise.swift; sourceTree = "<group>"; };
+		2EEDCD5C245A10EB001D3E34 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
+		2EEDCD5D245A10EB001D3E34 /* ExchangeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeService.swift; sourceTree = "<group>"; };
+		2EEDCD5E245A10EC001D3E34 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		2EEDCD5F245A10EC001D3E34 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		2EEDCD60245A10EC001D3E34 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
+		2EEDCD61245A10EC001D3E34 /* PairwiseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairwiseService.swift; sourceTree = "<group>"; };
+		2EEDCD62245A10EC001D3E34 /* SudoDecentralizedIdentityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudoDecentralizedIdentityClient.swift; sourceTree = "<group>"; };
+		2EEDCD63245A10EC001D3E34 /* LedgerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedgerService.swift; sourceTree = "<group>"; };
+		2EEDCD73245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudoDecentralizedIdentityClientTests.swift; sourceTree = "<group>"; };
+		A059D46B245C981D0096F034 /* Await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Await.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2EEDCCEB245A0EBF001D3E34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EEDCD31245A1029001D3E34 /* Indy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EEDCCF4245A0EC0001D3E34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EEDCCF8245A0EC0001D3E34 /* SudoDecentralizedIdentity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EEDCD09245A0F8B001D3E34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EEDCD11245A0F8B001D3E34 /* SudoDecentralizedIdentity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2EEDCCE4245A0EBF001D3E34 = {
+			isa = PBXGroup;
+			children = (
+				2EEDCCF0245A0EBF001D3E34 /* SudoDecentralizedIdentity */,
+				2EEDCCFB245A0EC0001D3E34 /* SudoDecentralizedIdentityTests */,
+				2EEDCD0D245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests */,
+				2EEDCCEF245A0EBF001D3E34 /* Products */,
+				2EEDCD2F245A1028001D3E34 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2EEDCCEF245A0EBF001D3E34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */,
+				2EEDCCF7245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.xctest */,
+				2EEDCD0C245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2EEDCCF0245A0EBF001D3E34 /* SudoDecentralizedIdentity */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDCD5E245A10EC001D3E34 /* Crypto.swift */,
+				2EEDCD57245A10EB001D3E34 /* CryptoService.swift */,
+				2EEDCD58245A10EB001D3E34 /* Did.swift */,
+				2EEDCD59245A10EB001D3E34 /* DidService.swift */,
+				2EEDCD60245A10EC001D3E34 /* Exchange.swift */,
+				2EEDCD5D245A10EB001D3E34 /* ExchangeService.swift */,
+				2EEDCD63245A10EC001D3E34 /* LedgerService.swift */,
+				2EEDCD5A245A10EB001D3E34 /* Logger.swift */,
+				2EEDCD5B245A10EB001D3E34 /* Pairwise.swift */,
+				2EEDCD61245A10EC001D3E34 /* PairwiseService.swift */,
+				2EEDCD62245A10EC001D3E34 /* SudoDecentralizedIdentityClient.swift */,
+				2EEDCD5F245A10EC001D3E34 /* Wallet.swift */,
+				2EEDCD56245A10EB001D3E34 /* WalletCache.swift */,
+				2EEDCD5C245A10EB001D3E34 /* WalletService.swift */,
+				2EEDCCF1245A0EBF001D3E34 /* SudoDecentralizedIdentity.h */,
+				A059D46B245C981D0096F034 /* Await.swift */,
+				2EEDCCF2245A0EBF001D3E34 /* Info.plist */,
+			);
+			path = SudoDecentralizedIdentity;
+			sourceTree = "<group>";
+		};
+		2EEDCCFB245A0EC0001D3E34 /* SudoDecentralizedIdentityTests */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDCCFC245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift */,
+				2EEDCCFE245A0EC0001D3E34 /* Info.plist */,
+			);
+			path = SudoDecentralizedIdentityTests;
+			sourceTree = "<group>";
+		};
+		2EEDCD0D245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDCD73245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift */,
+				2EEDCD10245A0F8B001D3E34 /* Info.plist */,
+				2EAE9E3C245BB71D003C90C5 /* ClientHelper.swift */,
+			);
+			path = SudoDecentralizedIdentityIntegrationTests;
+			sourceTree = "<group>";
+		};
+		2EEDCD2F245A1028001D3E34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EEDCD30245A1029001D3E34 /* Indy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2EEDCCE9245A0EBF001D3E34 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EEDCCFF245A0EC0001D3E34 /* SudoDecentralizedIdentity.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2EEDCCED245A0EBF001D3E34 /* SudoDecentralizedIdentity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EEDCD02245A0EC0001D3E34 /* Build configuration list for PBXNativeTarget "SudoDecentralizedIdentity" */;
+			buildPhases = (
+				2EEDCCE9245A0EBF001D3E34 /* Headers */,
+				2EEDCCEA245A0EBF001D3E34 /* Sources */,
+				2EEDCCEB245A0EBF001D3E34 /* Frameworks */,
+				2EEDCCEC245A0EBF001D3E34 /* Resources */,
+				2EEDCD33245A1029001D3E34 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SudoDecentralizedIdentity;
+			productName = SudoDecentralizedIdentity;
+			productReference = 2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2EEDCCF6245A0EC0001D3E34 /* SudoDecentralizedIdentityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EEDCD05245A0EC0001D3E34 /* Build configuration list for PBXNativeTarget "SudoDecentralizedIdentityTests" */;
+			buildPhases = (
+				2EEDCCF3245A0EC0001D3E34 /* Sources */,
+				2EEDCCF4245A0EC0001D3E34 /* Frameworks */,
+				2EEDCCF5245A0EC0001D3E34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EEDCCFA245A0EC0001D3E34 /* PBXTargetDependency */,
+			);
+			name = SudoDecentralizedIdentityTests;
+			productName = SudoDecentralizedIdentityTests;
+			productReference = 2EEDCCF7245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2EEDCD0B245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EEDCD16245A0F8B001D3E34 /* Build configuration list for PBXNativeTarget "SudoDecentralizedIdentityIntegrationTests" */;
+			buildPhases = (
+				2EEDCD08245A0F8B001D3E34 /* Sources */,
+				2EEDCD09245A0F8B001D3E34 /* Frameworks */,
+				2EEDCD0A245A0F8B001D3E34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EEDCD13245A0F8B001D3E34 /* PBXTargetDependency */,
+			);
+			name = SudoDecentralizedIdentityIntegrationTests;
+			productName = SudoDecentralizedIdentityIntegrationTests;
+			productReference = 2EEDCD0C245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2EEDCCE5245A0EBF001D3E34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Sudo Platform";
+				TargetAttributes = {
+					2EEDCCED245A0EBF001D3E34 = {
+						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
+					};
+					2EEDCCF6245A0EC0001D3E34 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					2EEDCD0B245A0F8B001D3E34 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 2EEDCCE8245A0EBF001D3E34 /* Build configuration list for PBXProject "SudoDecentralizedIdentity" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2EEDCCE4245A0EBF001D3E34;
+			productRefGroup = 2EEDCCEF245A0EBF001D3E34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2EEDCCED245A0EBF001D3E34 /* SudoDecentralizedIdentity */,
+				2EEDCCF6245A0EC0001D3E34 /* SudoDecentralizedIdentityTests */,
+				2EEDCD0B245A0F8B001D3E34 /* SudoDecentralizedIdentityIntegrationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2EEDCCEC245A0EBF001D3E34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EEDCCF5245A0EC0001D3E34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EEDCD0A245A0F8B001D3E34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2EEDCCEA245A0EBF001D3E34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EEDCD6D245A10EC001D3E34 /* Wallet.swift in Sources */,
+				2EEDCD68245A10EC001D3E34 /* Logger.swift in Sources */,
+				2EEDCD69245A10EC001D3E34 /* Pairwise.swift in Sources */,
+				2EEDCD65245A10EC001D3E34 /* CryptoService.swift in Sources */,
+				2EEDCD71245A10EC001D3E34 /* LedgerService.swift in Sources */,
+				A059D46E245CBC960096F034 /* Await.swift in Sources */,
+				2EEDCD6C245A10EC001D3E34 /* Crypto.swift in Sources */,
+				2EEDCD6F245A10EC001D3E34 /* PairwiseService.swift in Sources */,
+				2EEDCD6E245A10EC001D3E34 /* Exchange.swift in Sources */,
+				2EEDCD67245A10EC001D3E34 /* DidService.swift in Sources */,
+				2EEDCD70245A10EC001D3E34 /* SudoDecentralizedIdentityClient.swift in Sources */,
+				2EEDCD6B245A10EC001D3E34 /* ExchangeService.swift in Sources */,
+				2EEDCD64245A10EC001D3E34 /* WalletCache.swift in Sources */,
+				2EEDCD6A245A10EC001D3E34 /* WalletService.swift in Sources */,
+				2EEDCD66245A10EC001D3E34 /* Did.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EEDCCF3245A0EC0001D3E34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EEDCCFD245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EEDCD08245A0F8B001D3E34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EAE9E3D245BB71D003C90C5 /* ClientHelper.swift in Sources */,
+				2EEDCD77245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift in Sources */,
+				A059D46F245CC0E40096F034 /* Await.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2EEDCCFA245A0EC0001D3E34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EEDCCED245A0EBF001D3E34 /* SudoDecentralizedIdentity */;
+			targetProxy = 2EEDCCF9245A0EC0001D3E34 /* PBXContainerItemProxy */;
+		};
+		2EEDCD13245A0F8B001D3E34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EEDCCED245A0EBF001D3E34 /* SudoDecentralizedIdentity */;
+			targetProxy = 2EEDCD12245A0F8B001D3E34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2EEDCD00245A0EC0001D3E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2EEDCD01245A0EC0001D3E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2EEDCD03245A0EC0001D3E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = SudoDecentralizedIdentity/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sudoplatform.decentralized-identity";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2EEDCD04245A0EC0001D3E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = SudoDecentralizedIdentity/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sudoplatform.decentralized-identity";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2EEDCD06245A0EC0001D3E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				INFOPLIST_FILE = SudoDecentralizedIdentityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoDecentralizedIdentityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2EEDCD07245A0EC0001D3E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				INFOPLIST_FILE = SudoDecentralizedIdentityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoDecentralizedIdentityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2EEDCD14245A0F8B001D3E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				INFOPLIST_FILE = SudoDecentralizedIdentityIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoDecentralizedIdentityIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2EEDCD15245A0F8B001D3E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				INFOPLIST_FILE = SudoDecentralizedIdentityIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoDecentralizedIdentityIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2EEDCCE8245A0EBF001D3E34 /* Build configuration list for PBXProject "SudoDecentralizedIdentity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EEDCD00245A0EC0001D3E34 /* Debug */,
+				2EEDCD01245A0EC0001D3E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2EEDCD02245A0EC0001D3E34 /* Build configuration list for PBXNativeTarget "SudoDecentralizedIdentity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EEDCD03245A0EC0001D3E34 /* Debug */,
+				2EEDCD04245A0EC0001D3E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2EEDCD05245A0EC0001D3E34 /* Build configuration list for PBXNativeTarget "SudoDecentralizedIdentityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EEDCD06245A0EC0001D3E34 /* Debug */,
+				2EEDCD07245A0EC0001D3E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2EEDCD16245A0F8B001D3E34 /* Build configuration list for PBXNativeTarget "SudoDecentralizedIdentityIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EEDCD14245A0F8B001D3E34 /* Debug */,
+				2EEDCD15245A0F8B001D3E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2EEDCCE5245A0EBF001D3E34 /* Project object */;
+}

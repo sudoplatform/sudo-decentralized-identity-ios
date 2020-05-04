@@ -1,0 +1,25 @@
+*.idea
+*.pyc
+.DS_Store
+_Store
+*.swp
+*~.nib
+
+*.gcno
+*.orig
+
+*.pbxuser
+*.perspective
+*.perspectivev3A
+xcuserdata
+
+*.dSYM.zip
+*.ipa
+*.mobileprovision
+
+# Bundler files created with `bundle install --deployment`
+.bundle
+vendor
+
+build/
+docs/

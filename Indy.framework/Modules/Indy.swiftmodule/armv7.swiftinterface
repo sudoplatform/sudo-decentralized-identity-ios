@@ -1,0 +1,10 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 effective-4.2 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name Indy
+import Foundation
+@_exported import Indy
+import Swift
+extension Dictionary {
+  mutating public func merge(with dictionary: Swift.Dictionary<Key, Value>)
+  public func toString() -> Swift.String?
+}
