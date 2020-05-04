@@ -1,0 +1,467 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/CryptoService.swift",
+      "line": 14,
+      "symbol": "CryptoServiceError.invalidJson",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/CryptoService.swift",
+      "line": 15,
+      "symbol": "CryptoServiceError.failedToEncodeVerkeys",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/CryptoService.swift",
+      "line": 16,
+      "symbol": "CryptoServiceError.noDataAfterPack",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/CryptoService.swift",
+      "line": 17,
+      "symbol": "CryptoServiceError.general(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/CryptoService.swift",
+      "line": 18,
+      "symbol": "CryptoServiceError.indy(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/CryptoService.swift",
+      "line": 19,
+      "symbol": "CryptoServiceError.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Did.swift",
+      "line": 13,
+      "symbol": "Did",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Did.swift",
+      "line": 42,
+      "symbol": "Did",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Did.swift",
+      "line": 58,
+      "symbol": "Did",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/DidService.swift",
+      "line": 10,
+      "symbol": "DidServiceError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/DidService.swift",
+      "line": 499,
+      "symbol": "Ledger",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 13,
+      "symbol": "MessageThread.pthid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 20,
+      "symbol": "DidDoc.context",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 21,
+      "symbol": "DidDoc.did",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 22,
+      "symbol": "DidDoc.verKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 23,
+      "symbol": "DidDoc.serviceEndpoint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 30,
+      "symbol": "Connection.did",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 31,
+      "symbol": "Connection.didDoc",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 50,
+      "symbol": "Invitation.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 52,
+      "symbol": "Invitation.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 54,
+      "symbol": "Invitation.label",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 56,
+      "symbol": "Invitation.recipientKeys",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 58,
+      "symbol": "Invitation.serviceEndpoint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 60,
+      "symbol": "Invitation.routingKeys",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 85,
+      "symbol": "ExchangeRequest.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 87,
+      "symbol": "ExchangeRequest.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 89,
+      "symbol": "ExchangeRequest.thread",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 91,
+      "symbol": "ExchangeRequest.label",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 93,
+      "symbol": "ExchangeRequest.connection",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 119,
+      "symbol": "ExchangeResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 121,
+      "symbol": "ExchangeResponse.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 123,
+      "symbol": "ExchangeResponse.thread",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 125,
+      "symbol": "ExchangeResponse.connection",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 135,
+      "symbol": "Acknowledgement.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 137,
+      "symbol": "Acknowledgement.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 139,
+      "symbol": "Acknowledgement.thread",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Exchange.swift",
+      "line": 141,
+      "symbol": "Acknowledgement.connection",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/ExchangeService.swift",
+      "line": 13,
+      "symbol": "ExchangeServiceError.invalidJson",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/ExchangeService.swift",
+      "line": 14,
+      "symbol": "ExchangeServiceError.failedToEncodeVerkeys",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/ExchangeService.swift",
+      "line": 15,
+      "symbol": "ExchangeServiceError.noDataAfterPack",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/ExchangeService.swift",
+      "line": 16,
+      "symbol": "ExchangeServiceError.indy(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/ExchangeService.swift",
+      "line": 17,
+      "symbol": "ExchangeServiceError.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Logger.swift",
+      "line": 13,
+      "symbol": "Logger.log(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Logger.swift",
+      "line": 21,
+      "symbol": "LoggerImpl.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/Pairwise.swift",
+      "line": 51,
+      "symbol": "Pairwise.metadataForKey(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 14,
+      "symbol": "PairwiseServiceError.invalidJson",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 15,
+      "symbol": "PairwiseServiceError.indy(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 16,
+      "symbol": "PairwiseServiceError.general(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 17,
+      "symbol": "PairwiseServiceError.didAndVerkeyNotReturned",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 18,
+      "symbol": "PairwiseServiceError.listDidJsonNotReturned",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 19,
+      "symbol": "PairwiseServiceError.retrieveJsonNotReturned",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/PairwiseService.swift",
+      "line": 20,
+      "symbol": "PairwiseServiceError.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 19,
+      "symbol": "SudoDecentralizedIdentityClientError.createWalletFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 20,
+      "symbol": "SudoDecentralizedIdentityClientError.openWalletFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 21,
+      "symbol": "SudoDecentralizedIdentityClientError.createPrimaryDidFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 22,
+      "symbol": "SudoDecentralizedIdentityClientError.retrievePrimaryDidFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 23,
+      "symbol": "SudoDecentralizedIdentityClientError.failedToEncodeMessageUtf8",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 24,
+      "symbol": "SudoDecentralizedIdentityClientError.failedToDecodeMessage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 25,
+      "symbol": "SudoDecentralizedIdentityClientError.general(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 26,
+      "symbol": "SudoDecentralizedIdentityClientError.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 29,
+      "symbol": "MetadataKeys",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 40,
+      "symbol": "PairwiseMessage.message",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 41,
+      "symbol": "PairwiseMessage.senderVerkey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 42,
+      "symbol": "PairwiseMessage.recipientVerkey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/SudoDecentralizedIdentityClient.swift",
+      "line": 228,
+      "symbol": "DefaultSudoDecentralizedIdentityClient.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh/SudoDecentralizedIdentity/WalletService.swift",
+      "line": 12,
+      "symbol": "WalletServiceError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/anonyome/builds/c2dfa4ea/0/platform/decentralized-identity/sudo-decentralized-identity-ios/sudo-decentralized-identity-ios-gh"
+}

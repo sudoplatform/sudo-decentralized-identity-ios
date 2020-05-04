@@ -33,7 +33,7 @@ This will update the local CocoaPods repository and install the latest version o
 
 ### Sudo Decentalized Identity Client
 
-The main entrypoint to the Sudo Decentralized Identity SDK is the Sudo Decentralized Identity client. This service exposes all decentralized identity-related operations.
+The main entrypoint to the [Sudo Decentralized Identity SDK](https://sudoplatform.github.io/sudo-decentralized-identity-ios/) is the Sudo Decentralized Identity client. This service exposes all decentralized identity-related operations.
 
 It consists of the following operations:
 

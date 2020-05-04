@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SudoDecentralizedIdentityClient Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/SudoDecentralizedIdentityClient" class="dashAnchor"></a>
+
+    <a title="SudoDecentralizedIdentityClient Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          SudoDecentralizedIdentity 1.0.1 Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">SudoDecentralizedIdentity Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      SudoDecentralizedIdentityClient Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DefaultSudoDecentralizedIdentityClient.html">DefaultSudoDecentralizedIdentityClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/LoggerImpl.html">LoggerImpl</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums.html#/s:25SudoDecentralizedIdentity18CryptoServiceErrorO">CryptoServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums.html#/s:25SudoDecentralizedIdentity20ExchangeServiceErrorO">ExchangeServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums.html#/s:25SudoDecentralizedIdentity20PairwiseServiceErrorO">PairwiseServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums.html#/s:25SudoDecentralizedIdentity0abC11ClientErrorO">SudoDecentralizedIdentityClientError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:25SudoDecentralizedIdentity6LoggerP">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SudoDecentralizedIdentityClient.html">SudoDecentralizedIdentityClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity15AcknowledgementV">Acknowledgement</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity10ConnectionV">Connection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity6DidDocV">DidDoc</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity16EncryptedMessageV">EncryptedMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity15ExchangeRequestV">ExchangeRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity16ExchangeResponseV">ExchangeResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity10InvitationV">Invitation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity13MessageThreadV">MessageThread</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Pairwise.html">Pairwise</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:25SudoDecentralizedIdentity15PairwiseMessageV">PairwiseMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RetrievePairwiseResult.html">RetrievePairwiseResult</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>SudoDecentralizedIdentityClient</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SudoDecentralizedIdentityClient</span></code></pre>
+
+                </div>
+              </div>
+            <p>Sudo Decentralized Identity Client - provides all functionality for decentralized identity-related operations</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP11setupWallet8walletId10completionySS_ys6ResultOySbAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/setupWallet(walletId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP11setupWallet8walletId10completionySS_ys6ResultOySbAA0abcD5ErrorOGctF">setupWallet(walletId:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Setup wallet. Given a wallet ID, will create the wallet locally.
+Idempotent. If a wallet already exists for an ID, then it just returns
+successful.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setupWallet</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP11listWallets10completionyys6ResultOySaySSGAA0abcD5ErrorOGc_tF"></a>
+                    <a name="//apple_ref/swift/Method/listWallets(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP11listWallets10completionyys6ResultOySaySSGAA0abcD5ErrorOGc_tF">listWallets(completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List all local wallets</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listWallets</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt">String</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP9createDid8walletId5label6ledger10completionySS_SSAA6LedgerOSgys6ResultOyAA0F0VAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/createDid(walletId:label:ledger:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP9createDid8walletId5label6ledger10completionySS_SSAA6LedgerOSgys6ResultOyAA0F0VAA0abcD5ErrorOGctF">createDid(walletId:<wbr>label:<wbr>ledger:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create DID in specific wallet</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createDid</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ledger</span><span class="p">:</span> <span class="kt">Ledger</span><span class="p">?,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">Did</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP9keyForDid8walletId3did10completionySS_SSys6ResultOySSAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/keyForDid(walletId:did:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP9keyForDid8walletId3did10completionySS_SSys6ResultOySSAA0abcD5ErrorOGctF">keyForDid(walletId:<wbr>did:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get verkey for a DID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">keyForDid</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">did</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP8listDids8walletId10completionySS_ys6ResultOySayAA3DidVGAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/listDids(walletId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP8listDids8walletId10completionySS_ys6ResultOySayAA3DidVGAA0abcD5ErrorOGctF">listDids(walletId:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List DIDs in a specific wallet</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listDids</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Did</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP14createPairwise8walletId8theirDid0I6Verkey5label02myJ015serviceEndpoint10completionySS_S5Sys6ResultOySbAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/createPairwise(walletId:theirDid:theirVerkey:label:myDid:serviceEndpoint:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP14createPairwise8walletId8theirDid0I6Verkey5label02myJ015serviceEndpoint10completionySS_S5Sys6ResultOySbAA0abcD5ErrorOGctF">createPairwise(walletId:<wbr>theirDid:<wbr>theirVerkey:<wbr>label:<wbr>myDid:<wbr>serviceEndpoint:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a pairwise</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createPairwise</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">theirDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">theirVerkey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">myDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">serviceEndpoint</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP12listPairwise8walletId10completionySS_ys6ResultOySayAA0F0VGAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/listPairwise(walletId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP12listPairwise8walletId10completionySS_ys6ResultOySayAA0F0VGAA0abcD5ErrorOGctF">listPairwise(walletId:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List all pairwise in a wallet</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listPairwise</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/Pairwise.html">Pairwise</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP14encryptMessage8walletId6verkey7message10completionySS_SS10Foundation4DataVys6ResultOyAkA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/encryptMessage(walletId:verkey:message:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP14encryptMessage8walletId6verkey7message10completionySS_SS10Foundation4DataVys6ResultOyAkA0abcD5ErrorOGctF">encryptMessage(walletId:<wbr>verkey:<wbr>message:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encrypt data using a verkey</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">encryptMessage</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">verkey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">Data</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP14decryptMessage8walletId6verkey7message10completionySS_SS10Foundation4DataVys6ResultOyAkA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/decryptMessage(walletId:verkey:message:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP14decryptMessage8walletId6verkey7message10completionySS_SS10Foundation4DataVys6ResultOyAkA0abcD5ErrorOGctF">decryptMessage(walletId:<wbr>verkey:<wbr>message:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Decrypt data using verkey</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">decryptMessage</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">verkey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">Data</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP22encryptPairwiseMessage8walletId8theirDid7message10completionySS_S2Sys6ResultOy10Foundation4DataVAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/encryptPairwiseMessage(walletId:theirDid:message:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP22encryptPairwiseMessage8walletId8theirDid7message10completionySS_S2Sys6ResultOy10Foundation4DataVAA0abcD5ErrorOGctF">encryptPairwiseMessage(walletId:<wbr>theirDid:<wbr>message:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encrypt data using a pairwise</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">encryptPairwiseMessage</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">theirDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt">Data</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP22decryptPairwiseMessage8walletId8theirDid7message10completionySS_SS10Foundation4DataVys6ResultOyAA0fG0VAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/decryptPairwiseMessage(walletId:theirDid:message:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP22decryptPairwiseMessage8walletId8theirDid7message10completionySS_SS10Foundation4DataVys6ResultOyAA0fG0VAA0abcD5ErrorOGctF">decryptPairwiseMessage(walletId:<wbr>theirDid:<wbr>message:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Decrypt data using pairwise</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">decryptPairwiseMessage</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">theirDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity15PairwiseMessageV">PairwiseMessage</a></span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP10invitation8walletId5myDid15serviceEndpoint5label10completionySS_S3Sys6ResultOyAA10InvitationVAA0abcD5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/invitation(walletId:myDid:serviceEndpoint:label:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP10invitation8walletId5myDid15serviceEndpoint5label10completionySS_S3Sys6ResultOyAA10InvitationVAA0abcD5ErrorOGctF">invitation(walletId:<wbr>myDid:<wbr>serviceEndpoint:<wbr>label:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generate an invitation as part of the exchange process</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">invitation</span><span class="p">(</span><span class="nv">walletId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">myDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">serviceEndpoint</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:25SudoDecentralizedIdentity14ClientCallbacka">ClientCallback</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity10InvitationV">Invitation</a></span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP15exchangeRequest3did15serviceEndpoint5label10invitationAA08ExchangeF0VAA3DidV_S2SAA10InvitationVtF"></a>
+                    <a name="//apple_ref/swift/Method/exchangeRequest(did:serviceEndpoint:label:invitation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP15exchangeRequest3did15serviceEndpoint5label10invitationAA08ExchangeF0VAA3DidV_S2SAA10InvitationVtF">exchangeRequest(did:<wbr>serviceEndpoint:<wbr>label:<wbr>invitation:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generate an exchange request as part of the exchange process</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exchangeRequest</span><span class="p">(</span><span class="nv">did</span><span class="p">:</span> <span class="kt">Did</span><span class="p">,</span> <span class="nv">serviceEndpoint</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">invitation</span><span class="p">:</span> <span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity10InvitationV">Invitation</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity15ExchangeRequestV">ExchangeRequest</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP16exchangeResponse3did15serviceEndpoint5label0E7RequestAA08ExchangeF0VAA3DidV_S2SAA0lK0VtF"></a>
+                    <a name="//apple_ref/swift/Method/exchangeResponse(did:serviceEndpoint:label:exchangeRequest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP16exchangeResponse3did15serviceEndpoint5label0E7RequestAA08ExchangeF0VAA3DidV_S2SAA0lK0VtF">exchangeResponse(did:<wbr>serviceEndpoint:<wbr>label:<wbr>exchangeRequest:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generate an exchange response as part of the exchange process</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exchangeResponse</span><span class="p">(</span><span class="nv">did</span><span class="p">:</span> <span class="kt">Did</span><span class="p">,</span> <span class="nv">serviceEndpoint</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">exchangeRequest</span><span class="p">:</span> <span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity15ExchangeRequestV">ExchangeRequest</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity16ExchangeResponseV">ExchangeResponse</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:25SudoDecentralizedIdentity0abC6ClientP15acknowledgement3did15serviceEndpoint16exchangeResponseAA15AcknowledgementVAA3DidV_SSAA08ExchangeJ0VtF"></a>
+                    <a name="//apple_ref/swift/Method/acknowledgement(did:serviceEndpoint:exchangeResponse:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:25SudoDecentralizedIdentity0abC6ClientP15acknowledgement3did15serviceEndpoint16exchangeResponseAA15AcknowledgementVAA3DidV_SSAA08ExchangeJ0VtF">acknowledgement(did:<wbr>serviceEndpoint:<wbr>exchangeResponse:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generate an acknowledgement as part of the exchange process</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">acknowledgement</span><span class="p">(</span><span class="nv">did</span><span class="p">:</span> <span class="kt">Did</span><span class="p">,</span> <span class="nv">serviceEndpoint</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">exchangeResponse</span><span class="p">:</span> <span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity16ExchangeResponseV">ExchangeResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs.html#/s:25SudoDecentralizedIdentity15AcknowledgementV">Acknowledgement</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://sudoplatform.com" target="_blank" rel="external">Sudo Platform Engineering</a>. All rights reserved. (Last updated: 2020-05-05)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
