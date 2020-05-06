@@ -11,6 +11,7 @@ internal typealias WalletHandle = IndyHandle
 
 public enum WalletServiceError: Error {
     case invalidJson
+    case keyNotFoundForWalletId
     case indy(Error)
     case general(Error)
     case unknown
@@ -166,14 +167,16 @@ internal class WalletServiceImpl: WalletService {
     private let DELETE_TIMEOUT = 10.0
     
     private let indyWallet: IndyWallet
+    private let keyStore: KeyStore
     
     /**
      Initialize wallet service implementation
      
      - Parameter: Indy wallet instance
      */
-    internal init(indyWallet: IndyWallet) {
+    internal init(indyWallet: IndyWallet = IndyWallet.sharedInstance()!, keyStore: KeyStore = KeyStoreImpl()) {
         self.indyWallet = indyWallet
+        self.keyStore = keyStore
     }
     
     /// Protocol imlementation (see WalletService protocol documentation)
@@ -182,7 +185,12 @@ internal class WalletServiceImpl: WalletService {
         do {
             // Setup config and credentials
             let config = try WalletConfig.fromId(id: id).json()
-            let walletKey = self.generateKey()
+            let walletKey: String
+            if let existingKey = try? self.retrieveKey(id: id) {
+                walletKey = existingKey
+            } else {
+                walletKey = try self.generateKey(id: id)
+            }
             let credentials = try WalletCredentials.fromKey(key: walletKey).json()
             
             // Create wallet
@@ -246,7 +254,7 @@ internal class WalletServiceImpl: WalletService {
         do {
             // Setup config and credentials
             let config = try WalletConfig.fromId(id: id).json()
-            let walletKey = self.retrieveKey(id: id)
+            let walletKey = try self.retrieveKey(id: id)
             let credentials = try WalletCredentials.fromKey(key: walletKey).json()
             
             // Open wallet
@@ -298,7 +306,7 @@ internal class WalletServiceImpl: WalletService {
     internal func deleteWallet(wallet: Wallet, completion: @escaping (Result<Bool, WalletServiceError>) -> Void) {
         do {
             let config = try WalletConfig.fromId(id: wallet.id).json()
-            let walletKey = self.retrieveKey(id: wallet.id)
+            let walletKey = try self.retrieveKey(id: wallet.id)
             let credentials = try WalletCredentials.fromKey(key: walletKey).json()
             
             // Make sure wallet is closed
@@ -335,23 +343,30 @@ internal class WalletServiceImpl: WalletService {
     */
     
     /**
-     Generate a wallet key TODO
+     Generate a wallet key
+
+     - Parameter: Wallet ID
      
      - Returns: wallet key
      */
-    private func generateKey() -> String {
-        return "abcd"
+    private func generateKey(id: String) throws -> String {
+        let key = UUID().uuidString
+        try keyStore.set(key: id, value: key)
+        return key
     }
     
     /**
-     Retrieve a wallet key TODO
+     Retrieve a wallet key
      
      - Parameter: Wallet ID
      
      - Returns: Wallet key
      */
-    private func retrieveKey(id: String) -> String {
-        return "abcd"
+    private func retrieveKey(id: String) throws -> String {
+        guard let key = try keyStore.get(key: id) else {
+            throw WalletServiceError.keyNotFoundForWalletId
+        }
+        return key
     }
     
     /**

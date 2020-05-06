@@ -5,8 +5,19 @@
 //
 
 import XCTest
-import SudoDecentralizedIdentity
+@testable import SudoDecentralizedIdentity
 import Indy
+
+class MockKeyStore: KeyStore {
+    var cache = [String: String]()
+    func set(key: String, value: String) throws {
+        cache[key] = value
+    }
+
+    func get(key: String) throws -> String? {
+        return cache[key]
+    }
+}
 
 class SudoDecentralizedIdentityClientTests: XCTestCase {
 
@@ -18,9 +29,14 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func client() -> DefaultSudoDecentralizedIdentityClient {
+        let walletService = WalletServiceImpl(keyStore: MockKeyStore())
+        return DefaultSudoDecentralizedIdentityClient(walletService: walletService)
+    }
+
     func test_setupWallet_succeeds() {
         let walletId = UUID().uuidString
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectation = XCTestExpectation(description: "Setup wallet")
 
@@ -40,7 +56,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
     
     func test_listWallets_succeeds() {
         let walletId = UUID().uuidString
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let setupExpectation = XCTestExpectation(description: "Setup wallet")
         let listExpectation = XCTestExpectation(description: "List wallets")
@@ -72,7 +88,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
 
     func test_setupWalletTwice_succeeds() {
         let walletId = UUID().uuidString
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup1 = XCTestExpectation(description: "Setup wallet #1")
         let expectationSetup2 = XCTestExpectation(description: "Setup wallet #2")
@@ -105,7 +121,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
     func test_setupWalletTwoDifferent_succeeds() {
         let walletId1 = UUID().uuidString
         let walletId2 = UUID().uuidString
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup1 = XCTestExpectation(description: "Setup wallet #1")
         let expectationSetup2 = XCTestExpectation(description: "Setup wallet #2")
@@ -138,7 +154,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
     func test_createDidNoLedger_succeeds() {
         let walletId = UUID().uuidString
         let label = "some label"
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup = XCTestExpectation(description: "Setup wallet")
         let expectationCreateDid = XCTestExpectation(description: "Create DID")
@@ -171,7 +187,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
 //    func test_createDidBuilderNet_succeeds() {
 //        let walletId = UUID().uuidString
 //        let label = "some label"
-//        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+//        let decentralizedClient = self.client()
 //
 //        let expectationSetup = XCTestExpectation(description: "Setup wallet")
 //        let expectationCreateDid = XCTestExpectation(description: "Create DID")
@@ -204,7 +220,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
     func test_createDidThenList_succeeds() {
         let walletId = UUID().uuidString
         let label = "some label"
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup = XCTestExpectation(description: "Setup wallet")
         let expectationCreateDid = XCTestExpectation(description: "Create DID")
@@ -245,7 +261,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
     func test_createTwoDidsThenList_succeeds() {
         let walletId = UUID().uuidString
         let label = "some label"
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup = XCTestExpectation(description: "Setup wallet")
         let expectationCreateDid1 = XCTestExpectation(description: "Create DID #1")
@@ -299,7 +315,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
         let theirDid = "Hpqu5nR1VBG46aJjgB8wvD"
         let theirVerkey = "AAsKk7JMJpZWd8RVhG4DyGR3qEkGr57xpsS8HPmr8SLp"
         let label = "some label"
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup = XCTestExpectation(description: "Setup wallet")
         let expectationCreateDid = XCTestExpectation(description: "Create DID")
@@ -370,8 +386,8 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
         DispatchQueue.global(qos: .background).async {
             defer { exp.fulfill() }
             do {
-                let aliceClient = DefaultSudoDecentralizedIdentityClient()
-                let bobClient = DefaultSudoDecentralizedIdentityClient()
+                let aliceClient = self.client()
+                let bobClient = self.client()
                 
                 // Setup Alice's wallet with a DID
                 _ = try await { aliceClient.setupWallet(walletId: aliceWalletId, completion: $0) }
@@ -456,7 +472,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
         DispatchQueue.global(qos: .background).async {
             defer { exp.fulfill() }
             do {
-                let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+                let decentralizedClient = self.client()
 
                 _ = try await { decentralizedClient.setupWallet(walletId: walletIdSender, completion: $0) }
                 _ = try await { decentralizedClient.setupWallet(walletId: walletIdReceiver, completion: $0) }
@@ -521,7 +537,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
         DispatchQueue.global(qos: .background).async {
             defer { exp.fulfill() }
             do {
-                let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+                let decentralizedClient = self.client()
 
                 _ = try await { decentralizedClient.setupWallet(walletId: walletIdSender, completion: $0) }
                 _ = try await { decentralizedClient.setupWallet(walletId: walletIdReceiver, completion: $0) }
@@ -579,7 +595,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
     func test_createDidThenInvite_recipientKeyNotNil() {
         let walletId = UUID().uuidString
         let label = "some label"
-        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+        let decentralizedClient = self.client()
 
         let expectationSetup = XCTestExpectation(description: "Setup wallet")
         let expectationCreateDid = XCTestExpectation(description: "Create DID")
@@ -637,7 +653,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
 //            eExchangeRequest
 //        ]
 //        
-//        let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+//        let decentralizedClient = self.client()
 //        
 //        decentralizedClient.setupWallet(walletId: walletIdSender) { result in
 //            switch result {
@@ -705,7 +721,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
 //             eExchangeResponse
 //         ]
 //
-//         let decentralizedClient = DefaultSudoDecentralizedIdentityClient()
+//         let decentralizedClient = self.client()
 //
 //         decentralizedClient.setupWallet(walletId: walletIdSender) { result in
 //             switch result {

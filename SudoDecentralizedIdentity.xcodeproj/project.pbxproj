@@ -31,6 +31,7 @@
 		2EEDCD77245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCD73245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift */; };
 		A059D46E245CBC960096F034 /* Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059D46B245C981D0096F034 /* Await.swift */; };
 		A059D46F245CC0E40096F034 /* Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059D46B245C981D0096F034 /* Await.swift */; };
+		A059D486246215530096F034 /* KeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059D484246215520096F034 /* KeyStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		2EEDCD63245A10EC001D3E34 /* LedgerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedgerService.swift; sourceTree = "<group>"; };
 		2EEDCD73245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudoDecentralizedIdentityClientTests.swift; sourceTree = "<group>"; };
 		A059D46B245C981D0096F034 /* Await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Await.swift; sourceTree = "<group>"; };
+		A059D484246215520096F034 /* KeyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				2EEDCD5C245A10EB001D3E34 /* WalletService.swift */,
 				2EEDCCF1245A0EBF001D3E34 /* SudoDecentralizedIdentity.h */,
 				A059D46B245C981D0096F034 /* Await.swift */,
+				A059D484246215520096F034 /* KeyStore.swift */,
 				2EEDCCF2245A0EBF001D3E34 /* Info.plist */,
 			);
 			path = SudoDecentralizedIdentity;
@@ -348,6 +351,7 @@
 				2EEDCD64245A10EC001D3E34 /* WalletCache.swift in Sources */,
 				2EEDCD6A245A10EC001D3E34 /* WalletService.swift in Sources */,
 				2EEDCD66245A10EC001D3E34 /* Did.swift in Sources */,
+				A059D486246215530096F034 /* KeyStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

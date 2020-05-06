@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'SudoDecentralizedIdentity'
-  spec.version               = "1.0.1"
+  spec.version               = "2.0.0"
   spec.author                = { 'Sudo Platform Engineering' => 'sudoplatform-engineering@anonyome.com' }
   spec.homepage              = 'https://sudoplatform.com'
   spec.summary               = 'Decentralized Identity SDK for the Sudo Platform by Anonyome Labs.'

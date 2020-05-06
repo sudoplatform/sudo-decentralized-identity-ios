@@ -239,7 +239,13 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
     /**
      Internal intializer that allows for injection of services
      */
-    internal init(walletService: WalletService, didService: DidService, pairwiseService: PairwiseService, cryptoService: CryptoService, exchangeService: ExchangeService, walletCache: WalletCache, logger: Logger = LoggerImpl()) {
+    internal init(walletService: WalletService = WalletServiceImpl(indyWallet: IndyWallet.sharedInstance()!),
+                  didService: DidService = DidServiceImpl(),
+                  pairwiseService: PairwiseService = PairwiseServiceImpl(),
+                  cryptoService: CryptoService = CryptoServiceImpl(),
+                  exchangeService: ExchangeService = ExchangeServiceImpl(),
+                  walletCache: WalletCache = WalletCacheImpl(),
+                  logger: Logger = LoggerImpl()) {
         self.walletService = walletService
         self.didService = didService
         self.pairwiseService = pairwiseService
