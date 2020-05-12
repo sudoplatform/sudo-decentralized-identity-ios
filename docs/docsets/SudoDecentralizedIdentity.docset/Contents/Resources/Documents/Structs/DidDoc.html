@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pairwise Structure Reference</title>
+    <title>DidDoc Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/Pairwise" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/DidDoc" class="dashAnchor"></a>
 
-    <a title="Pairwise Structure Reference"></a>
+    <a title="DidDoc Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">SudoDecentralizedIdentity Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Pairwise Structure Reference
+      DidDoc Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -141,16 +141,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Pairwise</h1>
+            <h1>DidDoc</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Pairwise</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Pairwise</span><span class="p">:</span> <span class="kt">Decodable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Pairwise</span><span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DidDoc</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                 </div>
               </div>
-            <p>Representation of the pairwise reflecting Indy library</p>
+            <p>Representation of exchange protocol DID doc</p>
 
           </div>
         </section>
@@ -162,9 +160,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:25SudoDecentralizedIdentity8PairwiseV5myDidSSvp"></a>
-                    <a name="//apple_ref/swift/Property/myDid" class="dashAnchor"></a>
-                    <a class="token" href="#/s:25SudoDecentralizedIdentity8PairwiseV5myDidSSvp">myDid</a>
+                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -172,95 +170,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>My DID</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">myDid</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:25SudoDecentralizedIdentity8PairwiseV8theirDidSSvp"></a>
-                    <a name="//apple_ref/swift/Property/theirDid" class="dashAnchor"></a>
-                    <a class="token" href="#/s:25SudoDecentralizedIdentity8PairwiseV8theirDidSSvp">theirDid</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Their DID</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">theirDid</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:25SudoDecentralizedIdentity8PairwiseV8metadataSDyS2SGvp"></a>
-                    <a name="//apple_ref/swift/Property/metadata" class="dashAnchor"></a>
-                    <a class="token" href="#/s:25SudoDecentralizedIdentity8PairwiseV8metadataSDyS2SGvp">metadata</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Pairwise metadata</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">metadata</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:25SudoDecentralizedIdentity8PairwiseV5myDid05theirF08metadataACSS_SSSDyS2SGtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(myDid:theirDid:metadata:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:25SudoDecentralizedIdentity8PairwiseV5myDid05theirF08metadataACSS_SSSDyS2SGtcfc">init(myDid:<wbr>theirDid:<wbr>metadata:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialize</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">myDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">theirDid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">metadata</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -287,32 +203,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
-                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>

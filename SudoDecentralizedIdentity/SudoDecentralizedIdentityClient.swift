@@ -28,24 +28,6 @@ public enum SudoDecentralizedIdentityClientError: Error {
 
 public enum MetadataKeys: String {
     case label = "LABEL"
-    case serviceEndpoint = "SERVICE_ENDPOINT"
-}
-
-
-/**
- * Decrypted pairwise message
- */
-
-public struct PairwiseMessage: Codable {
-    public let message: String
-    public let senderVerkey: String
-    public let recipientVerkey: String
-
-    enum CodingKeys: String, CodingKey {
-        case message
-        case senderVerkey = "sender_verkey"
-        case recipientVerkey = "recipient_verkey"
-    }
 }
 
 /**
@@ -108,7 +90,7 @@ public protocol SudoDecentralizedIdentityClient {
      - Parameter: Service endpoint
      - Parameter: Completion handler that handles a boolean result or `SudoDecentralizedIdentityClientError`
      */
-    func createPairwise(walletId: String, theirDid: String, theirVerkey: String, label: String, myDid: String, serviceEndpoint: String, completion: @escaping ClientCallback<Bool>)
+    func createPairwise(walletId: String, theirDid: String, theirVerkey: String, label: String, myDid: String, completion: @escaping ClientCallback<Bool>)
     
     /**
      List all pairwise in a wallet
@@ -117,46 +99,24 @@ public protocol SudoDecentralizedIdentityClient {
      - Parameter: Completion handler that handles a list of pairwise or `SudoDecentralizedIdentityClientError`
      */
     func listPairwise(walletId: String, completion: @escaping ClientCallback<[Pairwise]>)
-    
-    /**
-     Encrypt data using a verkey
-     
-     - Parameter: Wallet ID
-     - Parameter: Verkey
-     - Parameter: Data to encrypt
-     - Parameter: Completion handler that handles encrypted data or `SudoDecentralizedIdentityClientError`
-     */
-    func encryptMessage(walletId: String, verkey: String, message: Data, completion: @escaping ClientCallback<Data>)
 
-    /**
-     Decrypt data using verkey
-     
-     - Parameter: Wallet ID
-     - Parameter: Verkey
-     - Parameter: Encrypted data
-     - Parameter: Completion handler that can handle decrypted data or `SudoDecentralizedIdentityClientError`
-     */
-    func decryptMessage(walletId: String, verkey: String, message: Data, completion: @escaping ClientCallback<Data>)
+    /// Packs an encrypted envelope in either authcrypt or anoncrypt mode depending on `senderVerkey`.
+    ///
+    /// To use a DID, see `packMessage(walletId:message:recipientVerkeys:senderDid:completion)`.
+    ///
+    /// - Parameter walletId: Wallet ID.
+    /// - Parameter message: Message data to encrypt.
+    /// - Parameter recipientVerkeys: List of recipient verkeys to encrypt with.
+    /// - Parameter senderVerkey: Sender to reveal to recipients. If nil, encrypts in authcrypt mode.
+    /// - Parameter completion: Completion handler.
+    func packMessage(walletId: String, message: Data, recipientVerkeys: [String], senderVerkey: String?, completion: @escaping ClientCallback<Data>)
 
-    /**
-     Encrypt data using a pairwise
-     
-     - Parameter: Wallet ID
-     - Parameter: Their DID
-     - Parameter: String to utf8 encode and encrypt
-     - Parameter: Completion handler that handles encrypted data or `SudoDecentralizedIdentityClientError`
-     */
-    func encryptPairwiseMessage(walletId: String, theirDid: String, message: String, completion: @escaping ClientCallback<Data>)
-    
-    /**
-     Decrypt data using pairwise
-     
-     - Parameter: Wallet ID
-     - Parameter: My DID
-     - Parameter: Encrypted data
-     - Parameter: Completion handler that can handle decrypted message or `SudoDecentralizedIdentityClientError`
-     */
-    func decryptPairwiseMessage(walletId: String, theirDid: String, message: Data, completion: @escaping ClientCallback<PairwiseMessage>)
+    /// Unpacks an encrypted envelope in either authcrypt or anoncrypt mode.
+    ///
+    /// - Parameter walletId: Wallet ID.
+    /// - Parameter message: Message data to decrypt.
+    /// - Parameter completion: Completion handler.
+    func unpackMessage(walletId: String, message: Data, completion: @escaping ClientCallback<UnpackedMessage>)
 
     /**
      Generate an invitation as part of the exchange process
@@ -187,6 +147,20 @@ public protocol SudoDecentralizedIdentityClient {
      - Parameter: ExchangeRequest
      */
     func exchangeResponse(did: Did, serviceEndpoint: String, label: String, exchangeRequest: ExchangeRequest) -> ExchangeResponse
+
+    /// Signs an exchange response.
+    ///
+    /// - Parameter walletId: Wallet containing the DID present in the exchange response.
+    /// - Parameter exchangeResponse: `ExchangeResponse` to sign.
+    /// - Parameter completion: Completion handler.
+    func signExchangeResponse(walletId: String, exchangeResponse: ExchangeResponse, completion: @escaping ClientCallback<SignedExchangeResponse>)
+
+    /// Verifies the signature present on the signed exchange response.
+    /// Returns the exchange response with the signed data and timestamp decoded if the signature is valid, or an error otherwise.
+    ///
+    /// - Parameter exchangeResponse: Signed exchange response to verify.
+    /// - Parameter completion: Completion handler.
+    func verifySignedExchangeResponse(_ exchangeResponse: SignedExchangeResponse, completion: @escaping ClientCallback<(ExchangeResponse, Date)>)
     
     /**
      Generate an acknowledgement as part of the exchange process
@@ -377,12 +351,12 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
     }
     
     /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
-    public func createPairwise(walletId: String, theirDid: String, theirVerkey: String, label: String, myDid: String, serviceEndpoint: String, completion: @escaping ClientCallback<Bool>) {
+    public func createPairwise(walletId: String, theirDid: String, theirVerkey: String, label: String, myDid: String, completion: @escaping ClientCallback<Bool>) {
         // Check for wallet in cache
         queue(completion) {
             let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
             _ = try await { self.didService.storeTheirDid(wallet: wallet, did: theirDid, verkey: theirVerkey, completion: $0) }
-            let metadata = [MetadataKeys.label.rawValue: label, MetadataKeys.serviceEndpoint.rawValue: serviceEndpoint]
+            let metadata = [MetadataKeys.label.rawValue: label]
             return try await {
                 self.pairwiseService.create(wallet: wallet,
                                             theirDid: theirDid,
@@ -401,76 +375,35 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
             return try await { self.pairwiseService.list(wallet: wallet, completion: $0) }
         }
     }
-    
-    /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
-    public func encryptMessage(walletId: String, verkey: String, message: Data, completion: @escaping ClientCallback<Data>) {
+
+    public func packMessage(walletId: String, message: Data, recipientVerkeys: [String], senderVerkey: String?, completion: @escaping ClientCallback<Data>) {
         queue(completion) {
             let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
             return try await {
-                self.cryptoService.encryptMessage(
+                self.cryptoService.packMessage(
                     wallet: wallet,
                     message: message,
-                    verkey: verkey,
-                    completion: $0)
+                    receiverVerkeys: recipientVerkeys,
+                    senderVerkey: senderVerkey,
+                    completion: $0
+                )
             }
         }
     }
 
-    /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
-    public func decryptMessage(walletId: String, verkey: String, message: Data, completion: @escaping ClientCallback<Data>) {
+    public func unpackMessage(walletId: String, message: Data, completion: @escaping ClientCallback<UnpackedMessage>) {
         queue(completion) {
             let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
             return try await {
-                self.cryptoService.decryptMessage(
+                self.cryptoService.unpackMessage(
                     wallet: wallet,
                     message: message,
-                    verkey: verkey,
-                    completion: $0)
+                    completion: $0
+                )
             }
         }
     }
-    
-    /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
-    public func encryptPairwiseMessage(walletId: String, theirDid: String, message: String, completion: @escaping ClientCallback<Data>) {
-        queue(completion) {
-            guard let encodedMessage = message.data(using: .utf8) else {
-                throw SudoDecentralizedIdentityClientError.failedToEncodeMessageUtf8
-            }
-            let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
-            let pairwise = try await { self.pairwiseService.retrieve(wallet: wallet, theirDid: theirDid, completion: $0) }
-            let myVerkey = try await { self.didService.verkey(wallet: wallet, did: pairwise.myDid, completion: $0) }
-            let theirVerkey = try await { self.didService.verkey(wallet: wallet, did: pairwise.theirDid, completion: $0) }
-            return try await {
-                self.cryptoService.encryptMessage(
-                    wallet: wallet,
-                    message: encodedMessage,
-                    receiverVerkeys: [myVerkey, theirVerkey],
-                    senderVerkey: myVerkey,
-                    completion: $0)
-            }
-        }
-    }
-    
-    /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
-    public func decryptPairwiseMessage(walletId: String, theirDid: String, message: Data, completion: @escaping ClientCallback<PairwiseMessage>) {
-        queue(completion) {
-            let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
-            let decryptedData = try await {
-                self.cryptoService.decryptMessage(
-                    wallet: wallet,
-                    message: message,
-                    theirDid: theirDid,
-                    completion: $0)
-            }
 
-            do {
-                return try JSONDecoder().decode(PairwiseMessage.self, from: decryptedData)
-            } catch {
-                throw SudoDecentralizedIdentityClientError.failedToDecodeMessage
-            }
-        }
-    }
-    
     /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
     public func invitation(walletId: String, myDid: String, serviceEndpoint: String, label: String, completion: @escaping ClientCallback<Invitation>) {
         // Check for wallet in cache
@@ -483,7 +416,7 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
                               label: label,
                               recipientKeys: keys,
                               serviceEndpoint: serviceEndpoint,
-                              routingKeys: keys)
+                              routingKeys: [])
         }
     }
     
@@ -491,10 +424,22 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
     public func exchangeRequest(did: Did, serviceEndpoint: String, label: String, invitation: Invitation) -> ExchangeRequest {
         return self.exchangeService.exchangeRequest(did: did, serviceEndpoint: serviceEndpoint, label: label, invitation: invitation)
     }
-    
-    /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
+
     public func exchangeResponse(did: Did, serviceEndpoint: String, label: String, exchangeRequest: ExchangeRequest) -> ExchangeResponse {
         return self.exchangeService.exchangeResponse(did: did, serviceEndpoint: serviceEndpoint, label: label, exchangeRequest: exchangeRequest)
+    }
+
+    public func signExchangeResponse(walletId: String, exchangeResponse: ExchangeResponse, completion: @escaping ClientCallback<SignedExchangeResponse>) {
+        queue(completion) {
+            let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
+            return try await { self.exchangeService.signExchangeResponse(wallet: wallet, exchangeResponse: exchangeResponse, completion: $0) }
+        }
+    }
+
+    public func verifySignedExchangeResponse(_ exchangeResponse: SignedExchangeResponse, completion: @escaping ClientCallback<(ExchangeResponse, Date)>) {
+        queue(completion) {
+            return try await { self.exchangeService.verifySignedExchangeResponse(exchangeResponse, completion: $0) }
+        }
     }
     
     /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)

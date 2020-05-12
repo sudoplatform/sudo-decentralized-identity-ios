@@ -334,7 +334,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         XCTAssertNotNil(did)
                         XCTAssertEqual(did.metadataForKey(MetadataKeys.label), label)
                         decentralizedClient.createPairwise(walletId: walletId, theirDid: theirDid,
-                                                           theirVerkey: theirVerkey, label: "test", myDid: did.did, serviceEndpoint: "SE") { result in // }, completion:  )
+                                                           theirVerkey: theirVerkey, label: "test", myDid: did.did) { result in // }, completion:  )
                             switch result {
                             case .success:
                                 XCTAssert(true)
@@ -345,7 +345,6 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                                         XCTAssertNotNil(pairwises)
                                         XCTAssertEqual(pairwises.count, 1)
                                         XCTAssertEqual(pairwises.first?.metadataForKey(.label), "test")
-                                        XCTAssertEqual(pairwises.first?.metadataForKey(.serviceEndpoint), "SE")
                                     case .failure(let error):
                                         XCTAssertNil(error)
                                     }
@@ -413,47 +412,56 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                 let bobExchangeRequest = bobClient.exchangeRequest(did: bobDid, serviceEndpoint: bobServiceEndpoint, label: bobLabel, invitation: aliceInvitation)
                 let bobEncodedExchangeRequest = try JSONEncoder().encode(bobExchangeRequest)
                 XCTAssertEqual(bobInvitationReceived.recipientKeys.first!, aliceInvitation.recipientKeys.first!)
-                let bobEncryptedExchangeRequest = try await { bobClient.encryptMessage(walletId: bobWalletId, verkey: bobInvitationReceived.recipientKeys.first!, message: bobEncodedExchangeRequest, completion: $0) }
+                let bobEncryptedExchangeRequest = try await { bobClient.packMessage(walletId: bobWalletId, message: bobEncodedExchangeRequest, recipientVerkeys: bobInvitationReceived.recipientKeys, senderVerkey: bobDid.verkey, completion: $0) }
                 
                 // Exchange Response
                 
                 // Alice receives the exchange request
                 let aliceEncryptedExchangeRequestReceived = bobEncryptedExchangeRequest
-                let aliceDecryptedExchangeRequest = try await { aliceClient.decryptMessage(walletId: aliceWalletId, verkey: aliceInvitation.recipientKeys.first!, message: aliceEncryptedExchangeRequestReceived, completion: $0) }
+                let aliceUnpackedExchangeRequest = try await { aliceClient.unpackMessage(walletId: aliceWalletId, message: aliceEncryptedExchangeRequestReceived, completion: $0) }
+                let aliceDecryptedExchangeRequest = aliceUnpackedExchangeRequest.message.data(using: .utf8)!
                 let aliceExchangeRequestReceived = try JSONDecoder().decode(ExchangeRequest.self, from: aliceDecryptedExchangeRequest)
+                XCTAssertEqual(aliceUnpackedExchangeRequest.recipientVerkey, aliceInvitation.recipientKeys[0])
                 XCTAssertEqual(aliceExchangeRequestReceived.id, bobExchangeRequest.id)
                 
                 // Alice generates pairwise
-                _ = try await { aliceClient.createPairwise(walletId: aliceWalletId, theirDid: bobDid.did, theirVerkey: bobDid.verkey, label: aliceExchangeRequestReceived.label, myDid: aliceDid.did, serviceEndpoint: aliceExchangeRequestReceived.connection.didDoc.serviceEndpoint, completion: $0) }
-                
-                // Alice sends exchange response
+                _ = try await { aliceClient.createPairwise(walletId: aliceWalletId, theirDid: bobDid.did, theirVerkey: bobDid.verkey, label: aliceExchangeRequestReceived.label, myDid: aliceDid.did, completion: $0) }
+
+                // Alice creates exchange response
                 let aliceExchangeResponse = aliceClient.exchangeResponse(did: aliceDid, serviceEndpoint: aliceServiceEndpoint, label: aliceLabel, exchangeRequest: aliceExchangeRequestReceived)
-                let aliceEncodedExchangeResponse = try JSONEncoder().encode(aliceExchangeResponse)
-                let aliceEncryptedExchangeResponse = try await { aliceClient.encryptMessage(walletId: aliceWalletId, verkey: aliceExchangeRequestReceived.connection.didDoc.verKey, message: aliceEncodedExchangeResponse, completion: $0)}
+                let aliceSignedExchangeResponse = try await { aliceClient.signExchangeResponse(walletId: aliceWalletId, exchangeResponse: aliceExchangeResponse, completion: $0) }
+                let aliceEncodedExchangeResponse = try JSONEncoder().encode(aliceSignedExchangeResponse)
+                let aliceEncryptedExchangeResponse = try await { aliceClient.packMessage(walletId: aliceWalletId, message: aliceEncodedExchangeResponse, recipientVerkeys: aliceExchangeRequestReceived.connection.didDoc.service.first!.recipientKeys, senderVerkey: aliceDid.verkey, completion: $0) }
                 
                 // Acknowledgement
                 
                 // Bob receives exchange response
                 let bobEncryptedExchangeResponseReceived = aliceEncryptedExchangeResponse
-                let bobDecryptedExchangeResponse = try await { bobClient.decryptMessage(walletId: bobWalletId, verkey: bobExchangeRequest.connection.didDoc.verKey, message: bobEncryptedExchangeResponseReceived, completion: $0)}
-                let bobExchangeResponseReceived = try JSONDecoder().decode(ExchangeResponse.self, from: bobDecryptedExchangeResponse)
-                XCTAssertEqual(bobExchangeResponseReceived.id, aliceExchangeResponse.id)
+                let bobUnpackedExchangeResponse = try await { bobClient.unpackMessage(walletId: bobWalletId, message: bobEncryptedExchangeResponseReceived, completion: $0) }
+                let bobDecryptedExchangeResponse = bobUnpackedExchangeResponse.message.data(using: .utf8)!
+                let bobSignedExchangeResponseReceived = try JSONDecoder().decode(SignedExchangeResponse.self, from: bobDecryptedExchangeResponse)
+                let bobVerifiedExchangeResponse = try await { bobClient.verifySignedExchangeResponse(bobSignedExchangeResponseReceived, completion: $0) }.0
+                XCTAssertEqual(bobUnpackedExchangeResponse.recipientVerkey, bobExchangeRequest.connection.didDoc.service.first?.recipientKeys.first)
+                XCTAssertEqual(bobVerifiedExchangeResponse.id, aliceExchangeResponse.id)
                 
                 // Bob generates pairwise
-                _ = try await { bobClient.createPairwise(walletId: bobWalletId, theirDid: aliceDid.did, theirVerkey: aliceDid.verkey, label: bobInvitationReceived.label, myDid: bobDid.did, serviceEndpoint: bobExchangeResponseReceived.connection.didDoc.serviceEndpoint, completion: $0) }
+                _ = try await { bobClient.createPairwise(walletId: bobWalletId, theirDid: aliceDid.did, theirVerkey: aliceDid.verkey, label: bobInvitationReceived.label, myDid: bobDid.did, completion: $0) }
                 
                 // Bob sends acknowledgement
-                let bobAcknowledgement = bobClient.acknowledgement(did: bobDid, serviceEndpoint: bobServiceEndpoint, exchangeResponse: bobExchangeResponseReceived)
+                let bobAcknowledgement = bobClient.acknowledgement(did: bobDid, serviceEndpoint: bobServiceEndpoint, exchangeResponse: bobVerifiedExchangeResponse)
                 let bobEncodedAcknowledgement = try JSONEncoder().encode(bobAcknowledgement)
-                let bobEncryptedAcknowledgement = try await { bobClient.encryptMessage(walletId: bobWalletId, verkey: bobExchangeResponseReceived.connection.didDoc.verKey, message: bobEncodedAcknowledgement, completion: $0)}
+                let bobEncryptedAcknowledgement = try await { bobClient.packMessage(walletId: bobWalletId, message: bobEncodedAcknowledgement, recipientVerkeys: bobVerifiedExchangeResponse.connection.didDoc.service.first!.recipientKeys, senderVerkey: bobDid.verkey, completion: $0) }
                 
                 // Alice receives acknowledgement
                 let aliceEncryptedAcknowledgementReceived = bobEncryptedAcknowledgement
-                let aliceDecryptedAcknowledgement = try await { aliceClient.decryptMessage(walletId: aliceWalletId, verkey: aliceExchangeResponse.connection.didDoc.verKey, message: aliceEncryptedAcknowledgementReceived, completion: $0)}
+                let aliceUnpackedAcknowledgement = try await { aliceClient.unpackMessage(walletId: aliceWalletId, message: aliceEncryptedAcknowledgementReceived, completion: $0) }
+                let aliceDecryptedAcknowledgement = aliceUnpackedAcknowledgement.message.data(using: .utf8)!
                 let aliceAcknowledgementReceived = try JSONDecoder().decode(Acknowledgement.self, from: aliceDecryptedAcknowledgement)
+                XCTAssertEqual(aliceUnpackedAcknowledgement.recipientVerkey, aliceExchangeResponse.connection.didDoc.service.first?.recipientKeys.first)
+                if let senderVerkey = aliceUnpackedAcknowledgement.senderVerkey {
+                    XCTAssertEqual(senderVerkey, bobExchangeRequest.connection.didDoc.service.first?.recipientKeys.first)
+                }
                 XCTAssertEqual(aliceAcknowledgementReceived.connection.did, bobAcknowledgement.connection.did)
-                
-                
             } catch {
                 XCTFail(error.localizedDescription)
             }
@@ -489,7 +497,6 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         theirVerkey: receiverDid.verkey,
                         label: "Receiver",
                         myDid: senderDid.did,
-                        serviceEndpoint: "SP",
                         completion: $0)
                 }
                 _ = try await {
@@ -499,26 +506,26 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         theirVerkey: senderDid.verkey,
                         label: "Sender",
                         myDid: receiverDid.did,
-                        serviceEndpoint: "SP",
                         completion: $0)
                 }
-                let messageIn = "Test".data(using: .utf16)!
+                let messageIn = "Test".data(using: .utf8)!
                 let encryptedData = try await {
-                    decentralizedClient.encryptMessage(
+                    decentralizedClient.packMessage(
                         walletId: walletIdSender,
-                        verkey: receiverDid.verkey,
                         message: messageIn,
+                        recipientVerkeys: [receiverDid.verkey],
+                        senderVerkey: nil,
                         completion: $0)
                 }
                 let messageOut = try await {
-                    decentralizedClient.decryptMessage(
+                    decentralizedClient.unpackMessage(
                         walletId: walletIdReceiver,
-                        verkey: receiverDid.verkey,
                         message: encryptedData,
                         completion: $0)
                 }
-                let out = String(data: messageOut, encoding: .utf16)!
-                XCTAssertNotNil(messageOut)
+                XCTAssertEqual(messageOut.senderVerkey, nil)
+                XCTAssertEqual(messageOut.recipientVerkey, receiverDid.verkey)
+                XCTAssertNotNil(messageOut.message)
             }
             catch {
                 XCTFail(error.localizedDescription)
@@ -554,7 +561,6 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         theirVerkey: receiverDid.verkey,
                         label: "Receiver",
                         myDid: senderDid.did,
-                        serviceEndpoint: "SP",
                         completion: $0)
                 }
                 _ = try await {
@@ -564,24 +570,25 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         theirVerkey: senderDid.verkey,
                         label: "Sender",
                         myDid: receiverDid.did,
-                        serviceEndpoint: "SP",
                         completion: $0)
                 }
                 let messageIn = "Test"
                 let encryptedData = try await {
-                    decentralizedClient.encryptPairwiseMessage(
+                    decentralizedClient.packMessage(
                         walletId: walletIdSender,
-                        theirDid: receiverDid.did,
-                        message: messageIn,
+                        message: messageIn.data(using: .utf8)!,
+                        recipientVerkeys: [receiverDid.verkey],
+                        senderVerkey: senderDid.verkey,
                         completion: $0)
                 }
                 let messageOut = try await {
-                    decentralizedClient.decryptPairwiseMessage(
+                    decentralizedClient.unpackMessage(
                         walletId: walletIdReceiver,
-                        theirDid: receiverDid.did,
                         message: encryptedData,
                         completion: $0)
                 }
+                XCTAssertEqual(messageOut.senderVerkey, senderDid.verkey)
+                XCTAssertEqual(messageOut.recipientVerkey, receiverDid.verkey)
                 XCTAssertEqual(messageOut.message, messageIn)
             }
             catch {

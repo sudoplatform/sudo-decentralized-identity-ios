@@ -7,197 +7,170 @@
 import Foundation
 import Indy
 
-/**
- Crypto service error
- */
+/// Crypto service error
 public enum CryptoServiceError: Error {
-    case invalidJson
-    case failedToEncodeVerkeys
-    case noDataAfterPack
-    case general(Error)
-    case indy(Error)
-    case unknown
+    case failedToEncodeReceiverVerkeys(Error)
+    case failedToDecodeUnpackedData(Error)
+    case indyError((IndyErrorCode, String?)?)
 }
 
-/**
- Crypto service protocol
- */
+/// Unpacked authcrypt or anoncrypt message.
+public struct UnpackedMessage: Codable {
+    public let message: String
+    public let senderVerkey: String?
+    public let recipientVerkey: String
+
+    enum CodingKeys: String, CodingKey {
+        case message
+        case senderVerkey = "sender_verkey"
+        case recipientVerkey = "recipient_verkey"
+    }
+}
+
+/// Crypto service protocol. Packs and unpacks encrypted envelopes (Aries RFC 0019).
 internal protocol CryptoService {
-    
-    /**
-     Encrypt message using keys, anon
-     
-     - Parameter: Wallet
-     - Parameter: Message data to encrypt
-     - Parameter: Verkey
-     - Parameter: Completion handler that handles encrypted data or `CryptoServiceError`
-     */
-    func encryptMessage(wallet: Wallet, message: Data, verkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void)
-    
-    /**
-     Encrypt message using keys, use for pairwise
-     
-     - Parameter: Wallet
-     - Parameter: Message data to encrypt
-     - Parameter: Receiver verkeys
-     - Parameter: Sender verkey
-     - Parameter: Completion handler that handles encrypted data or `CryptoServiceError`
-     */
-    func encryptMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void)
-    
-    /**
-     Decrypt encrypted message, anon
-     
-     - Parameter: Wallet
-     - Parameter: Encrypted message data
-     - Parameter: Verkey
-     - Parameter: Completion handler that handles decrypted data or `CryptoServiceError`
-     */
-    func decryptMessage(wallet: Wallet, message: Data, verkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void)
-    
-    /**
-     Decrypt encrypted message, use for pairwise
-     
-     - Parameter: Wallet
-     - Parameter: Encrypted message data
-     - Parameter: Their DID (must exist in wallet)
-     - Parameter: Completion handler that handles decrypted data or `CryptoServiceError`
-     */
-    func decryptMessage(wallet: Wallet, message: Data, theirDid: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void)
-    
+    /// Packs an encrypted envelope in either authcrypt or anoncrypt mode depending on `senderVerkey`.
+    ///
+    /// To use a DID with this function, call `DidService.keyForDid` to get the verkey for a specific DID.
+    ///
+    /// - Parameter wallet: Wallet.
+    /// - Parameter message: Message data to encrypt.
+    /// - Parameter receiverVerkeys: List of recipient verkeys to encrypt with.
+    /// - Parameter senderVerkey: Sender to reveal to recipients. If nil, encrypts in anoncrypt mode.
+    /// - Parameter completion: Completion handler.
+    /// -   Parameter result: The encrypted data or `CryptoServiceError`.
+    func packMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String?, completion: @escaping (_ result: Result<Data, CryptoServiceError>) -> Void)
+
+    /// Unpacks an encrypted envelope in either authcrypt or anoncrypt mode.
+    ///
+    /// - Parameter wallet: Wallet.
+    /// - Parameter message: Message data to decrypt.
+    /// - Parameter completion: Completion handler.
+    /// -   Parameter result: The decrypted data or `CryptoServiceError`.
+    func unpackMessage(wallet: Wallet, message: Data, completion: @escaping (_ result: Result<UnpackedMessage, CryptoServiceError>) -> Void)
+
+    /// Signs the given message..
+    ///
+    /// - Parameter walletId: Wallet.
+    /// - Parameter message: Message to sign.
+    /// - Parameter signerVerkey: Verkey to sign with.
+    /// - Parameter completion: Completion handler.
+    func signMessage(wallet: Wallet, message: Data, signerVerkey: String, completion: @escaping (_ result: Result<Data, CryptoServiceError>) -> Void)
+
+    /// Verifies the given signature for the provided message.
+    ///
+    /// - Parameter signature: Signature to verify.
+    /// - Parameter message: Message to verify signature for.
+    /// - Parameter signerVerkey: Verkey message was signed with.
+    /// - Parameter completion: Completion handler.
+    func verifySignature(_ signature: Data, forMessage message: Data, signerVerkey: String, completion: @escaping (_ result: Result<Void, CryptoServiceError>) -> Void)
 }
 
-/**
- Crypto service implementation
- */
+/// `CryptoService` implementation
 internal class CryptoServiceImpl: CryptoService {
-    
     /// Logger
     private let logger: Logger
-    
+
+    /// Instantiates a `CryptoServiceImpl`
     internal init(logger: Logger = LoggerImpl()) {
         self.logger = logger
     }
-    
-    /// See protocol documentation
-    internal func encryptMessage(wallet: Wallet, message: Data, verkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
-            
-            IndyCrypto.anonCrypt(message, theirKey: verkey) { error, data in
-                if let error = error {
-                    let indyCode = self.toIndyCode(error: error)
-                    switch indyCode {
-                    // Successful code or did already exists
-                    case .Success:
-                        guard let data = data else {
-                            completion(.failure(.noDataAfterPack))
-                            return
-                        }
-                        completion(.success(data))
-                        return
-                    // All other indy errors just propagate
-                    default:
-                        completion(.failure(.indy(error)))
-                        return
-                    }
-                }
-                
-            }
-    
-    }
-    
-    /// See protocol documentation
-    internal func encryptMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
-        
+
+    func packMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String?, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
+        let receiversJsonData: Data
         do {
-            let receivers = try JSONEncoder().encode(receiverVerkeys)
-            let receiverStr = String(data: receivers, encoding: .utf8)
-            
-            IndyCrypto.packMessage(message, receivers: receiverStr, sender: senderVerkey, walletHandle: wallet.handle) { error, data in
-                if let error = error {
-                    let indyCode = self.toIndyCode(error: error)
-                    switch indyCode {
-                    // Successful code or did already exists
-                    case .Success:
-                        guard let data = data else {
-                            completion(.failure(.noDataAfterPack))
-                            return
-                        }
-                        completion(.success(data))
-                        return
-                    // All other indy errors just propagate
-                    default:
-                        completion(.failure(.indy(error)))
-                        return
-                    }
-                }
-                
-            }
+            receiversJsonData = try JSONEncoder().encode(receiverVerkeys)
         } catch let error {
-            completion(.failure(.indy(error)))
-            return
+            return completion(.failure(.failedToEncodeReceiverVerkeys(error)))
         }
-    
-    }
-    
-    /// See protocol documentation
-    internal func decryptMessage(wallet: Wallet, message: Data, verkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
-        IndyCrypto.anonDecrypt(message, myKey: verkey, walletHandle: wallet.handle) { error, data in
-            if let error = error {
-                let indyCode = self.toIndyCode(error: error)
-                switch indyCode {
-                // Successful code or did already exists
-                case .Success:
-                    guard let data = data else {
-                        completion(.failure(.noDataAfterPack))
-                        return
-                    }
-                    completion(.success(data))
-                // All other indy errors just propagate
-                default:
-                    completion(.failure(.indy(error)))
-                    return
-                }
+
+        let receiversJson = String(decoding: receiversJsonData, as: Unicode.UTF8.self)
+
+        // When nil / null pointer is passed for the `sender`, anoncrypt is used.
+        // Note that this differs from the RFC which mentions the empty string.
+        IndyCrypto.packMessage(
+            message,
+            receivers: receiversJson,
+            sender: senderVerkey,
+            walletHandle: wallet.handle
+        ) { error, data in
+            switch (data, error.flatMap(self.toIndyCode)) {
+            case (.some(let data), .none), (.some(let data), .Success):
+                // success
+                completion(.success(data))
+            case (_, .some(let errorCode)):
+                // error message from indy
+                let indyErrorMessage = (error as NSError?)?.userInfo["message"] as? String
+                completion(.failure(.indyError((errorCode, indyErrorMessage))))
+            case (.none, _):
+                // no data, but no error message from indy
+                completion(.failure(.indyError(nil)))
             }
-            
         }
     }
-    
-    /// See protocol documentation
-    internal func decryptMessage(wallet: Wallet, message: Data, theirDid: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
+
+    func unpackMessage(wallet: Wallet, message: Data, completion: @escaping (Result<UnpackedMessage, CryptoServiceError>) -> Void) {
         IndyCrypto.unpackMessage(message, walletHandle: wallet.handle) { error, data in
-            if let error = error {
-                let indyCode = self.toIndyCode(error: error)
-                switch indyCode {
-                // Successful code or did already exists
-                case .Success:
-                    guard let data = data else {
-                        completion(.failure(.noDataAfterPack))
-                        return
-                    }
-                    completion(.success(data))
-                // All other indy errors just propagate
-                default:
-                    completion(.failure(.indy(error)))
-                    return
+            switch (data, error.flatMap(self.toIndyCode)) {
+            case (.some(let data), .none), (.some(let data), .Success):
+                // successfully unpacked
+                do {
+                    let unpacked = try JSONDecoder().decode(UnpackedMessage.self, from: data)
+                    completion(.success(unpacked))
+                } catch let error {
+                    completion(.failure(.failedToDecodeUnpackedData(error)))
                 }
+            case (_, .some(let errorCode)):
+                // error message from indy
+                let indyErrorMessage = (error as NSError?)?.userInfo["message"] as? String
+                completion(.failure(.indyError((errorCode, indyErrorMessage))))
+            case (.none, _):
+                // no data, but no error message from indy
+                completion(.failure(.indyError(nil)))
             }
-            
         }
     }
-    
-    /**
-     Convert error to indy error code
-     
-     - Parameter: Error
-     
-     - Returns: Indy error code
-     */
-    private func toIndyCode(error: Error?) -> IndyErrorCode {
-        if let err = error as NSError? {
-            return IndyErrorCode(rawValue: err.code) ?? .CommonIOError
-        } else {
-            return .CommonIOError
+
+    func signMessage(wallet: Wallet, message: Data, signerVerkey: String, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
+        IndyCrypto.signMessage(message, key: signerVerkey, walletHandle: wallet.handle) { error, data in
+            switch (data, error.flatMap(self.toIndyCode)) {
+            case (.some(let data), .none), (.some(let data), .Success):
+                // successfully signed
+                completion(.success(data))
+            case (_, .some(let errorCode)):
+                // error message from indy
+                let indyErrorMessage = (error as NSError?)?.userInfo["message"] as? String
+                completion(.failure(.indyError((errorCode, indyErrorMessage))))
+            case (.none, _):
+                // no data, but no error message from indy
+                completion(.failure(.indyError(nil)))
+            }
         }
     }
-    
+
+    func verifySignature(_ signature: Data, forMessage message: Data, signerVerkey: String, completion: @escaping (Result<Void, CryptoServiceError>) -> Void) {
+        IndyCrypto.verifySignature(signature, forMessage: message, key: signerVerkey) { error, success in
+            switch (success, error.flatMap(self.toIndyCode)) {
+            case (true, .none), (true, .Success):
+                // successfully verified
+                completion(.success(()))
+            case (_, .some(let errorCode)):
+                // error message from indy
+                let indyErrorMessage = (error as NSError?)?.userInfo["message"] as? String
+                completion(.failure(.indyError((errorCode, indyErrorMessage))))
+            case (false, _):
+                // failed, but no error message from indy
+                completion(.failure(.indyError(nil)))
+            }
+        }
+    }
+
+    private func toIndyCode(error: Error) -> IndyErrorCode? {
+        switch (error as NSError).domain {
+        case "IndyErrorDomain":
+            return IndyErrorCode(rawValue: (error as NSError).code)
+        default:
+            return nil
+        }
+    }
 }
