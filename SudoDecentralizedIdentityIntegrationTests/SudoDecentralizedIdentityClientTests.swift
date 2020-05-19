@@ -401,7 +401,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                 // Invitation
                 
                 // Create invitation for alice
-                let aliceInvitation = try await { aliceClient.invitation(walletId: aliceWalletId, myDid: aliceDid.did, serviceEndpoint: aliceInvitationServiceEndpoint, label: aliceLabel, completion: $0) }
+                let aliceInvitation = try await { aliceClient.invitation(walletId: aliceWalletId, myDid: aliceDid.did, serviceEndpoint: aliceInvitationServiceEndpoint, label: aliceLabel, imageURL: nil, completion: $0) }
                 XCTAssertEqual(aliceInvitation.label, aliceLabel)
                 XCTAssertEqual(aliceInvitation.serviceEndpoint, aliceInvitationServiceEndpoint)
                 
@@ -412,12 +412,13 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                 let bobExchangeRequest = bobClient.exchangeRequest(did: bobDid, serviceEndpoint: bobServiceEndpoint, label: bobLabel, invitation: aliceInvitation)
                 let bobEncodedExchangeRequest = try JSONEncoder().encode(bobExchangeRequest)
                 XCTAssertEqual(bobInvitationReceived.recipientKeys.first!, aliceInvitation.recipientKeys.first!)
-                let bobEncryptedExchangeRequest = try await { bobClient.packMessage(walletId: bobWalletId, message: bobEncodedExchangeRequest, recipientVerkeys: bobInvitationReceived.recipientKeys, senderVerkey: bobDid.verkey, completion: $0) }
+                let bobPackedExchangeRequest = try await { bobClient.packMessage(walletId: bobWalletId, message: bobEncodedExchangeRequest, recipientVerkeys: bobInvitationReceived.recipientKeys, senderVerkey: bobDid.verkey, completion: $0) }
+                let bobEncodedEncryptedExchangeRequest = try JSONEncoder().encode(bobPackedExchangeRequest)
                 
                 // Exchange Response
                 
                 // Alice receives the exchange request
-                let aliceEncryptedExchangeRequestReceived = bobEncryptedExchangeRequest
+                let aliceEncryptedExchangeRequestReceived = bobEncodedEncryptedExchangeRequest
                 let aliceUnpackedExchangeRequest = try await { aliceClient.unpackMessage(walletId: aliceWalletId, message: aliceEncryptedExchangeRequestReceived, completion: $0) }
                 let aliceDecryptedExchangeRequest = aliceUnpackedExchangeRequest.message.data(using: .utf8)!
                 let aliceExchangeRequestReceived = try JSONDecoder().decode(ExchangeRequest.self, from: aliceDecryptedExchangeRequest)
@@ -431,12 +432,13 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                 let aliceExchangeResponse = aliceClient.exchangeResponse(did: aliceDid, serviceEndpoint: aliceServiceEndpoint, label: aliceLabel, exchangeRequest: aliceExchangeRequestReceived)
                 let aliceSignedExchangeResponse = try await { aliceClient.signExchangeResponse(walletId: aliceWalletId, exchangeResponse: aliceExchangeResponse, completion: $0) }
                 let aliceEncodedExchangeResponse = try JSONEncoder().encode(aliceSignedExchangeResponse)
-                let aliceEncryptedExchangeResponse = try await { aliceClient.packMessage(walletId: aliceWalletId, message: aliceEncodedExchangeResponse, recipientVerkeys: aliceExchangeRequestReceived.connection.didDoc.service.first!.recipientKeys, senderVerkey: aliceDid.verkey, completion: $0) }
+                let alicePackedExchangeResponse = try await { aliceClient.packMessage(walletId: aliceWalletId, message: aliceEncodedExchangeResponse, recipientVerkeys: aliceExchangeRequestReceived.connection.didDoc.service.first!.recipientKeys, senderVerkey: aliceDid.verkey, completion: $0) }
+                let aliceEncodedEncryptedExchangeResponse = try JSONEncoder().encode(alicePackedExchangeResponse)
                 
                 // Acknowledgement
                 
                 // Bob receives exchange response
-                let bobEncryptedExchangeResponseReceived = aliceEncryptedExchangeResponse
+                let bobEncryptedExchangeResponseReceived = aliceEncodedEncryptedExchangeResponse
                 let bobUnpackedExchangeResponse = try await { bobClient.unpackMessage(walletId: bobWalletId, message: bobEncryptedExchangeResponseReceived, completion: $0) }
                 let bobDecryptedExchangeResponse = bobUnpackedExchangeResponse.message.data(using: .utf8)!
                 let bobSignedExchangeResponseReceived = try JSONDecoder().decode(SignedExchangeResponse.self, from: bobDecryptedExchangeResponse)
@@ -450,10 +452,11 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                 // Bob sends acknowledgement
                 let bobAcknowledgement = bobClient.acknowledgement(did: bobDid, serviceEndpoint: bobServiceEndpoint, exchangeResponse: bobVerifiedExchangeResponse)
                 let bobEncodedAcknowledgement = try JSONEncoder().encode(bobAcknowledgement)
-                let bobEncryptedAcknowledgement = try await { bobClient.packMessage(walletId: bobWalletId, message: bobEncodedAcknowledgement, recipientVerkeys: bobVerifiedExchangeResponse.connection.didDoc.service.first!.recipientKeys, senderVerkey: bobDid.verkey, completion: $0) }
+                let bobPackedAcknowledgement = try await { bobClient.packMessage(walletId: bobWalletId, message: bobEncodedAcknowledgement, recipientVerkeys: bobVerifiedExchangeResponse.connection.didDoc.service.first!.recipientKeys, senderVerkey: bobDid.verkey, completion: $0) }
+                let bobEncodedEncryptedAcknowledgement = try JSONEncoder().encode(bobPackedAcknowledgement)
                 
                 // Alice receives acknowledgement
-                let aliceEncryptedAcknowledgementReceived = bobEncryptedAcknowledgement
+                let aliceEncryptedAcknowledgementReceived = bobEncodedEncryptedAcknowledgement
                 let aliceUnpackedAcknowledgement = try await { aliceClient.unpackMessage(walletId: aliceWalletId, message: aliceEncryptedAcknowledgementReceived, completion: $0) }
                 let aliceDecryptedAcknowledgement = aliceUnpackedAcknowledgement.message.data(using: .utf8)!
                 let aliceAcknowledgementReceived = try JSONDecoder().decode(Acknowledgement.self, from: aliceDecryptedAcknowledgement)
@@ -509,7 +512,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         completion: $0)
                 }
                 let messageIn = "Test".data(using: .utf8)!
-                let encryptedData = try await {
+                let packedData = try await {
                     decentralizedClient.packMessage(
                         walletId: walletIdSender,
                         message: messageIn,
@@ -517,10 +520,11 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         senderVerkey: nil,
                         completion: $0)
                 }
+                let encodedPackedData = try JSONEncoder().encode(packedData)
                 let messageOut = try await {
                     decentralizedClient.unpackMessage(
                         walletId: walletIdReceiver,
-                        message: encryptedData,
+                        message: encodedPackedData,
                         completion: $0)
                 }
                 XCTAssertEqual(messageOut.senderVerkey, nil)
@@ -573,7 +577,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         completion: $0)
                 }
                 let messageIn = "Test"
-                let encryptedData = try await {
+                let packedData = try await {
                     decentralizedClient.packMessage(
                         walletId: walletIdSender,
                         message: messageIn.data(using: .utf8)!,
@@ -581,10 +585,11 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                         senderVerkey: senderDid.verkey,
                         completion: $0)
                 }
+                let encodedPackedData = try JSONEncoder().encode(packedData)
                 let messageOut = try await {
                     decentralizedClient.unpackMessage(
                         walletId: walletIdReceiver,
-                        message: encryptedData,
+                        message: encodedPackedData,
                         completion: $0)
                 }
                 XCTAssertEqual(messageOut.senderVerkey, senderDid.verkey)
@@ -616,7 +621,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
                     switch result {
                     case .success(let did):
                         XCTAssertNotNil(did)
-                        decentralizedClient.invitation(walletId: walletId, myDid: did.did, serviceEndpoint: "test", label: "aLabel") { result in
+                        decentralizedClient.invitation(walletId: walletId, myDid: did.did, serviceEndpoint: "test", label: "aLabel", imageURL: nil) { result in
                             switch result {
                             case .success(let invitation):
                                 XCTAssertNotNil(invitation.recipientKeys.first)
@@ -671,7 +676,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
 //                        decentralizedClient.createDid(walletId: walletIdSender, label: "Sender") { result in
 //                            switch result {
 //                            case .success(let senderDid):
-//                                decentralizedClient.invitation(walletId: walletIdSender, myDid: senderDid.did, serviceEndpoint: "TODO", label: "aLabel") { result in
+//                                decentralizedClient.invitation(walletId: walletIdSender, myDid: senderDid.did, serviceEndpoint: "TODO", label: "aLabel", imageURL: nil) { result in
 //                                    switch result {
 //                                    case .success(let invitation):
 //                                        decentralizedClient.exchangeRequest(walletId: walletIdReceiver, invitation: invitation, label: "aLabel") { result in
@@ -739,7 +744,7 @@ class SudoDecentralizedIdentityClientTests: XCTestCase {
 //                         decentralizedClient.createDid(walletId: walletIdSender, label: "Sender") { result in
 //                             switch result {
 //                             case .success(let senderDid):
-//                                decentralizedClient.invitation(walletId: walletIdSender, myDid: senderDid.did, serviceEndpoint: "TODO", label: "aLabel") { result in
+//                                decentralizedClient.invitation(walletId: walletIdSender, myDid: senderDid.did, serviceEndpoint: "TODO", label: "aLabel", imageURL: nil) { result in
 //                                     switch result {
 //                                     case .success(let invitation):
 //                                        let exchangeRequest = decentralizedClient.exchangeRequest(did: senderDid, serviceEndpoint: "endpoint", label: "label", invitation: invitation)

@@ -23,17 +23,28 @@ public struct DidDoc: Codable {
         public let type: String
         public let endpoint: String
         public let recipientKeys: [String]
+        public let routingKeys: [String]
 
         public enum CodingKeys: String, CodingKey {
-            case id, type, recipientKeys
+            case id, type, recipientKeys, routingKeys
             case endpoint = "serviceEndpoint"
         }
 
-        init(id: String, type: String, endpoint: String, recipientKeys: [String]) {
+        init(id: String, type: String, endpoint: String, recipientKeys: [String], routingKeys: [String]) {
             self.id = id
             self.type = type
             self.endpoint = endpoint
             self.recipientKeys = recipientKeys
+            self.routingKeys = routingKeys
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(String.self, forKey: .id)
+            type = try container.decode(String.self, forKey: .type)
+            endpoint = try container.decode(String.self, forKey: .endpoint)
+            recipientKeys = try container.decodeIfPresent([String].self, forKey: .recipientKeys) ?? []
+            routingKeys = try container.decodeIfPresent([String].self, forKey: .routingKeys) ?? []
         }
     }
 
@@ -88,26 +99,19 @@ public struct DidDoc: Codable {
     }
 
     public let context = "https://www.w3.org/ns/did/v1"
-    public let id: String
+    public let id: String?
     public let service: [Service]
     public let publicKey: [PublicKey]
     // TODO: `authentication`
 
     public enum CodingKeys: String, CodingKey {
-        case context, id, service, publicKey
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(context, forKey: .context)
-        try container.encode(id, forKey: .id)
-        try container.encode(service, forKey: .service)
-        try container.encode(publicKey, forKey: .publicKey)
+        case context = "@context"
+        case id, service, publicKey
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
+        id = try container.decodeIfPresent(String.self, forKey: .id)
         service = try container.decodeIfPresent([Service].self, forKey: .service) ?? []
         publicKey = try container.decodeIfPresent([PublicKey].self, forKey: .publicKey) ?? []
     }
@@ -148,11 +152,13 @@ public struct Connection: Codable {
  */
 public struct Invitation: Codable {
     
-    public let type = "https://didcomm.org/connections/1.0/invitation"
+    public let type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation"
     
     public let id: String
     
     public let label: String
+
+    public let imageURL: String?
 
     // TODO: support DID invitation
 
@@ -165,6 +171,7 @@ public struct Invitation: Codable {
     public enum CodingKeys: String, CodingKey {
         case type = "@type"
         case id = "@id"
+        case imageURL = "imageUrl"
         case label, recipientKeys, serviceEndpoint, routingKeys
     }
     
@@ -191,12 +198,12 @@ Representation of exchange protocol exchange request
 */
 public struct ExchangeRequest: Codable {
     
-    public let type = "https://didcomm.org/connections/1.0/request"
+    public let type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/request"
     
     public let id: String
 
     public let label: String
-    
+
     public let connection: Connection
 
     public enum CodingKeys: String, CodingKey {
@@ -246,7 +253,7 @@ Representation of exchange protocol exchange response
 */
 public struct ExchangeResponse: Codable {
     
-    public let type = "https://didcomm.org/connections/1.0/response"
+    public let type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/response"
     
     public let id: String
     
@@ -265,7 +272,7 @@ public struct ExchangeResponse: Codable {
 
 /// Representation of exchange protocol exchange response with signed `connection` field.
 public struct SignedExchangeResponse: Codable {
-    public let type = "https://didcomm.org/connections/1.0/response"
+    public let type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/response"
 
     public let id: String
 
@@ -286,7 +293,7 @@ Representation of exchange protocol acknowledgement
 */
 public struct Acknowledgement: Codable {
     
-    public let type = "https://didcomm.org/connections/1.0/acknowledgement"
+    public let type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/acknowledgement"
     
     public let id: String
     

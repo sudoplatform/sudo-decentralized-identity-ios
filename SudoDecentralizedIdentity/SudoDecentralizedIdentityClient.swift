@@ -109,7 +109,7 @@ public protocol SudoDecentralizedIdentityClient {
     /// - Parameter recipientVerkeys: List of recipient verkeys to encrypt with.
     /// - Parameter senderVerkey: Sender to reveal to recipients. If nil, encrypts in authcrypt mode.
     /// - Parameter completion: Completion handler.
-    func packMessage(walletId: String, message: Data, recipientVerkeys: [String], senderVerkey: String?, completion: @escaping ClientCallback<Data>)
+    func packMessage(walletId: String, message: Data, recipientVerkeys: [String], senderVerkey: String?, completion: @escaping ClientCallback<PackedMessage>)
 
     /// Unpacks an encrypted envelope in either authcrypt or anoncrypt mode.
     ///
@@ -124,9 +124,11 @@ public protocol SudoDecentralizedIdentityClient {
      - Parameter: Wallet ID
      - Parameter: My DID
      - Parameter: Service endpoint
+     - Parameter: Label
+     - Parameter: Image URL
      - Parameter: Completion handler that handles an Invitation or `SudoDecentralizedIdentityClientError`
      */
-    func invitation(walletId: String, myDid: String, serviceEndpoint: String, label: String, completion: @escaping ClientCallback<Invitation>)
+    func invitation(walletId: String, myDid: String, serviceEndpoint: String, label: String, imageURL: String?, completion: @escaping ClientCallback<Invitation>)
     
     /**
      Generate an exchange request as part of the exchange process
@@ -376,7 +378,7 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
         }
     }
 
-    public func packMessage(walletId: String, message: Data, recipientVerkeys: [String], senderVerkey: String?, completion: @escaping ClientCallback<Data>) {
+    public func packMessage(walletId: String, message: Data, recipientVerkeys: [String], senderVerkey: String?, completion: @escaping ClientCallback<PackedMessage>) {
         queue(completion) {
             let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
             return try await {
@@ -405,7 +407,7 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
     }
 
     /// Protocol imlementation (see SudoDecentralizedIdentityClient protocol documentation)
-    public func invitation(walletId: String, myDid: String, serviceEndpoint: String, label: String, completion: @escaping ClientCallback<Invitation>) {
+    public func invitation(walletId: String, myDid: String, serviceEndpoint: String, label: String, imageURL: String?, completion: @escaping ClientCallback<Invitation>) {
         // Check for wallet in cache
         queue(completion) {
             let wallet = try await { self.wallet(walletId: walletId, completion: $0) }
@@ -414,6 +416,7 @@ public class DefaultSudoDecentralizedIdentityClient: SudoDecentralizedIdentityCl
             let keys = [key]
             return Invitation(id: id,
                               label: label,
+                              imageURL: imageURL,
                               recipientKeys: keys,
                               serviceEndpoint: serviceEndpoint,
                               routingKeys: [])

@@ -27,12 +27,13 @@ internal protocol ExchangeService {
      Generate an invitation
      
      - Parameter: Label
+     - Parameter: Image URL
      - Parameter: Key
      - Parameter: Service endpoint
      
      - Returns: Invitation
      */
-    func invitation(label: String, key: String, serviceEndpoint: String) -> Invitation
+    func invitation(label: String, imageURL: String?, key: String, serviceEndpoint: String) -> Invitation
     
     /**
      Generate exchange request
@@ -125,11 +126,11 @@ internal class ExchangeServiceImpl: ExchangeService {
     }
     
     /// See protocol documentation
-    public func invitation(label: String, key: String, serviceEndpoint: String) -> Invitation {
+    public func invitation(label: String, imageURL: String?, key: String, serviceEndpoint: String) -> Invitation {
         let id = UUID().uuidString
         let label = label
         let keys = [key]
-        let invitation = Invitation(id: id, label: label, recipientKeys: keys, serviceEndpoint: serviceEndpoint, routingKeys: [])
+        let invitation = Invitation(id: id, label: label, imageURL: imageURL, recipientKeys: keys, serviceEndpoint: serviceEndpoint, routingKeys: [])
         self.sentInvitations.append(invitation)
         return invitation
     }
@@ -144,7 +145,8 @@ internal class ExchangeServiceImpl: ExchangeService {
                 id: "\(did.did);indy",
                 type: "IndyAgent",
                 endpoint: serviceEndpoint,
-                recipientKeys: [did.verkey]
+                recipientKeys: [did.verkey],
+                routingKeys: []
             )],
             publicKey: [DidDoc.PublicKey(
                 id: "\(did.did)#keys-1",
@@ -169,7 +171,8 @@ internal class ExchangeServiceImpl: ExchangeService {
                 id: "\(did.did);indy",
                 type: "IndyAgent",
                 endpoint: serviceEndpoint,
-                recipientKeys: [did.verkey]
+                recipientKeys: [did.verkey],
+                routingKeys: []
             )],
             publicKey: [DidDoc.PublicKey(
                 id: "\(did.did)#keys-1",
@@ -194,7 +197,8 @@ internal class ExchangeServiceImpl: ExchangeService {
                 id: "\(did.did);indy",
                 type: "IndyAgent",
                 endpoint: serviceEndpoint,
-                recipientKeys: [did.verkey]
+                recipientKeys: [did.verkey],
+                routingKeys: []
             )],
             publicKey: [DidDoc.PublicKey(
                 id: "\(did.did)#keys-1",

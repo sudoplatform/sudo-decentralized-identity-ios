@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EAE9E3D245BB71D003C90C5 /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE9E3C245BB71D003C90C5 /* ClientHelper.swift */; };
 		2EEDCCF8245A0EC0001D3E34 /* SudoDecentralizedIdentity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */; };
 		2EEDCCFD245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEDCCFC245A0EC0001D3E34 /* SudoDecentralizedIdentityTests.swift */; };
 		2EEDCCFF245A0EC0001D3E34 /* SudoDecentralizedIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEDCCF1245A0EBF001D3E34 /* SudoDecentralizedIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,7 +65,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2EAE9E3C245BB71D003C90C5 /* ClientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientHelper.swift; sourceTree = "<group>"; };
 		2EEDCCEE245A0EBF001D3E34 /* SudoDecentralizedIdentity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SudoDecentralizedIdentity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEDCCF1245A0EBF001D3E34 /* SudoDecentralizedIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudoDecentralizedIdentity.h; sourceTree = "<group>"; };
 		2EEDCCF2245A0EBF001D3E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			children = (
 				2EEDCD73245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift */,
 				2EEDCD10245A0F8B001D3E34 /* Info.plist */,
-				2EAE9E3C245BB71D003C90C5 /* ClientHelper.swift */,
 			);
 			path = SudoDecentralizedIdentityIntegrationTests;
 			sourceTree = "<group>";
@@ -367,7 +364,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EAE9E3D245BB71D003C90C5 /* ClientHelper.swift in Sources */,
 				2EEDCD77245A1154001D3E34 /* SudoDecentralizedIdentityClientTests.swift in Sources */,
 				A059D46F245CC0E40096F034 /* Await.swift in Sources */,
 			);

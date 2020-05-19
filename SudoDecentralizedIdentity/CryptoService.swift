@@ -10,8 +10,16 @@ import Indy
 /// Crypto service error
 public enum CryptoServiceError: Error {
     case failedToEncodeReceiverVerkeys(Error)
-    case failedToDecodeUnpackedData(Error)
+    case failedToDecodeResultingData(Error)
     case indyError((IndyErrorCode, String?)?)
+}
+
+/// Packed authcrypt or anoncrypt message.
+public struct PackedMessage: Codable {
+    public let protected: String
+    public let ciphertext: String
+    public let iv: String
+    public let tag: String
 }
 
 /// Unpacked authcrypt or anoncrypt message.
@@ -39,7 +47,7 @@ internal protocol CryptoService {
     /// - Parameter senderVerkey: Sender to reveal to recipients. If nil, encrypts in anoncrypt mode.
     /// - Parameter completion: Completion handler.
     /// -   Parameter result: The encrypted data or `CryptoServiceError`.
-    func packMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String?, completion: @escaping (_ result: Result<Data, CryptoServiceError>) -> Void)
+    func packMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String?, completion: @escaping (_ result: Result<PackedMessage, CryptoServiceError>) -> Void)
 
     /// Unpacks an encrypted envelope in either authcrypt or anoncrypt mode.
     ///
@@ -76,7 +84,7 @@ internal class CryptoServiceImpl: CryptoService {
         self.logger = logger
     }
 
-    func packMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String?, completion: @escaping (Result<Data, CryptoServiceError>) -> Void) {
+    func packMessage(wallet: Wallet, message: Data, receiverVerkeys: [String], senderVerkey: String?, completion: @escaping (Result<PackedMessage, CryptoServiceError>) -> Void) {
         let receiversJsonData: Data
         do {
             receiversJsonData = try JSONEncoder().encode(receiverVerkeys)
@@ -96,8 +104,13 @@ internal class CryptoServiceImpl: CryptoService {
         ) { error, data in
             switch (data, error.flatMap(self.toIndyCode)) {
             case (.some(let data), .none), (.some(let data), .Success):
-                // success
-                completion(.success(data))
+                // successfully packed
+                do {
+                    let packed = try JSONDecoder().decode(PackedMessage.self, from: data)
+                    completion(.success(packed))
+                } catch let error {
+                    completion(.failure(.failedToDecodeResultingData(error)))
+                }
             case (_, .some(let errorCode)):
                 // error message from indy
                 let indyErrorMessage = (error as NSError?)?.userInfo["message"] as? String
@@ -118,7 +131,7 @@ internal class CryptoServiceImpl: CryptoService {
                     let unpacked = try JSONDecoder().decode(UnpackedMessage.self, from: data)
                     completion(.success(unpacked))
                 } catch let error {
-                    completion(.failure(.failedToDecodeUnpackedData(error)))
+                    completion(.failure(.failedToDecodeResultingData(error)))
                 }
             case (_, .some(let errorCode)):
                 // error message from indy
